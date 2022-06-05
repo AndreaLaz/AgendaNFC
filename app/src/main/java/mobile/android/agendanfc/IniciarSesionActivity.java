@@ -17,4 +17,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(i);
+    }
 }
