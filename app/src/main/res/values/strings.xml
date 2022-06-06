@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AgendaNFC</string>
+    //activity_main
+    <string name="btn_iniciar_pantalla">INICIAR SESION</string>
+    <string name="btn_registrar_pantalla">REGISTRARSE</string>
+
+    <string name="btn_cancelar">CANCELAR</string>
+
+    <string name="tv_or">Or</string>
+    <string name="tv_registrarse">Registrarse</string>
+    <string name="tv_iniciarsesion">Iniciar Sesion</string>
+
+
 </resources>
