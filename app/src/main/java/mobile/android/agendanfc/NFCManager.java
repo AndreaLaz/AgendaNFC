@@ -75,7 +75,7 @@ public class NFCManager {
             NdefMessage msg = new NdefMessage(new NdefRecord[]{registro});
             return msg;
         }
-        //Aquí puede ver el método para un mensaje que contiene texto sin formato.
+        //Aquí puede ver el método para un mensaje que contiene texto sin formato.jkjjjñ
     public NdefMessage createTextMessage(String contenido) {
             try {
                 byte[] lang = Locale.getDefault().getLanguage().getBytes(StandardCharsets.UTF_8);
