@@ -1,19 +1,12 @@
 package mobile.android.agendanfc;
-import android.nfc.*;
-import android.app.Activity;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
-import android.os.Message;
-import android.widget.Toast;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -21,13 +14,19 @@ import java.util.Locale;
 
 public class NFCManager {
 
-    NfcAdapter mNfcAdapter;
+    Context mContext;
 
-    public void grabaLlamada( String numero){
-        NdefMessage mNfcMessage = createUriMessage(numero, "tel:");
+    public NFCManager(Context context)
+    {
+        mContext=context;
     }
-    public void grabaWhatssapp( String whatssapp){
+    public NdefMessage grabaLlamada(String numero){
+        NdefMessage mNfcMessage = createUriMessage(numero, "tel:");
+        return mNfcMessage;
+    }
+    public NdefMessage grabaWhatssapp(String whatssapp){
         NdefMessage mNfcMessage = createUriMessage(whatssapp, "https://wa.me/");
+        return mNfcMessage;
     }
     public void grabaLink( String link ){
         NdefMessage mNfcMessage = createUriMessage(link, "https://");
@@ -39,8 +38,9 @@ public class NFCManager {
     Llamé a esta clase NFCManager y le agregué todos los métodos que puedes ver en MainActivity.*/
 
     //Este es un método para verificar si NFC está disponible en un dispositivo.
-    public void verificarNFC() throws NFCNotSupported, NFCNotEnabled {
-        NfcAdapter nfcAdpt = NfcAdapter.getDefaultAdapter(Activity);//aqui no se me esta rallando
+    public void verificarNFC(NfcAdapter nfcAdpt) throws NFCNotSupported, NFCNotEnabled {
+         nfcAdpt = NfcAdapter.getDefaultAdapter(mContext);//aqui no se me esta rallando
+        Toast.makeText(mContext, "llego a llamar a verificaNFC", Toast.LENGTH_SHORT).show();
         if (nfcAdpt == null)
             throw new NFCNotSupported();
         if (!nfcAdpt.isEnabled())
@@ -49,7 +49,8 @@ public class NFCManager {
          //Este es un método para grabar datos en una etiqueta NFC.
         // Si es necesario, primero puede formatear la etiqueta y luego grabar sus datos en ella.
     public void escribirTag(Tag etiqueta, NdefMessage mensaje) {
-            if (etiqueta != null) {
+        Toast.makeText(mContext, "llega a escribir", Toast.LENGTH_SHORT).show();
+        if (etiqueta != null) {
                 try {
                     Ndef ndefTag = Ndef.get(etiqueta);
                     if (ndefTag == null) {
@@ -72,10 +73,10 @@ public class NFCManager {
         //Este es un método para crear un mensaje que contiene un enlace o un número de teléfono.
     public NdefMessage createUriMessage (String link, String tipo) {
         NdefRecord registro = android.nfc.NdefRecord.createUri (tipo + link);
-            NdefMessage msg = new NdefMessage(new NdefRecord[]{registro});
-            return msg;
+        NdefMessage msg = new NdefMessage(new NdefRecord[]{registro});
+        return msg;
         }
-        //Aquí puede ver el método para un mensaje que contiene texto sin formato.jkjjjñ
+    //Aquí puede ver el método para un mensaje que contiene texto sin formato.
     public NdefMessage createTextMessage(String contenido) {
             try {
                 byte[] lang = Locale.getDefault().getLanguage().getBytes(StandardCharsets.UTF_8);
@@ -95,7 +96,7 @@ public class NFCManager {
             }
             return null;
         }
-        //Este método le permitirá crear un mensaje con coordenadas de ubicación.
+    //Este método le permitirá crear un mensaje con coordenadas de ubicación.
     public NdefMessage createGeoMessage() {
             String geoUri = "geo:" + 48.471066 + "," + 35.038664;
             NdefRecord geoUriRecord = NdefRecord.createUri(geoUri);

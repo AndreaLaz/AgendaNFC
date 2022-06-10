@@ -18,7 +18,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         startActivity(i);
     }
     public void irMenuPrincipal(View view){
-        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        Intent i = new Intent(this,GrabarNFCActivity.class);
         startActivity(i);
     }
 }

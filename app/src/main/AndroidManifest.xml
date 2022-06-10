@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobile.android.agendanfc">
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -10,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgendaNFC">
         <activity
-            android:name=".GrabarNFC"
-            android:exported="false" />
+            android:name=".GrabarNFCActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERES" />//nosotras
+                <category android:name="android.intent.category.DEFAULT" />//nosotras
+                <data android:mimeType="text/plain"/>//nosotras
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MenuPrincipalActivity"
             android:exported="false" />
@@ -26,7 +34,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
