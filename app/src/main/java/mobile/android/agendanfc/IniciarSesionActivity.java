@@ -14,7 +14,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_iniciar_sesion);
     }
     public void irInicio(View view){
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(this,WhatsappActivity.class);
         startActivity(i);
     }
     public void irMenuPrincipal(View view){

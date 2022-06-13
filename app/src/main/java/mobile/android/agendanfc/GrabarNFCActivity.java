@@ -58,7 +58,7 @@ public class GrabarNFCActivity extends AppCompatActivity {
                             mNfcMessage = mNFCManager.grabaLlamada(contenidotxt);
                             break;
                         case R.id.radioLocation:
-                            mNfcMessage = mNFCManager.grabaWhatssapp(contenidotxt);
+                            //mNfcMessage = mNFCManager.createGeoMessage(contenidotxt);
                             break;
                     }if (mNfcMessage != null) {
                         ProgressDialog mDialog = new ProgressDialog(GrabarNFCActivity.this);
