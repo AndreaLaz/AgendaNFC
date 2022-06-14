@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.nfc.*;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -35,7 +34,7 @@ public class GrabarNFCActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grabar_nfc);
 
             radioMessageTypeGroup = (RadioGroup) findViewById(R.id.radioTypeMessage);
-            btnEmpezar = (Button) findViewById(R.id.button);
+            btnEmpezar = (Button) findViewById(R.id.id_bto_escribetag);
         TextView editaelmensaje = (TextView) findViewById(R.id.editaelmensaje);
 
         btnEmpezar.setOnClickListener(new OnClickListener() {

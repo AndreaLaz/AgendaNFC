@@ -3,6 +3,7 @@
     package="mobile.android.agendanfc">
 
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -29,7 +30,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERES" />
-                //nosotras
             </intent-filter>
         </activity>
         <activity
@@ -52,10 +52,9 @@
 
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                //nosotras
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="http" android:host="patata.com" />
-            </intent-filter>/>
+            </intent-filter>
         </activity>
     </application>
 

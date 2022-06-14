@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "3814856494",
+    "project_id": "agendanfc",
+    "storage_bucket": "agendanfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3814856494:android:3bad11bd92ca5556a2ccbf",
+        "android_client_info": {
+          "package_name": "mobile.android.agendanfc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3814856494-ne13k19oektreeaadg6671i7pn5hsnkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOrop_1fRRgahujINJtvl8eN5AdRWzZK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3814856494-ne13k19oektreeaadg6671i7pn5hsnkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

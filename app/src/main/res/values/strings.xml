@@ -10,5 +10,7 @@
     <string name="tv_registrarse">Registrarse</string>
     <string name="tv_iniciarsesion">Iniciar Sesion</string>
 
+    <string name="BTO_escrTag">ESCRIBE TAG</string>
+
 
 </resources>

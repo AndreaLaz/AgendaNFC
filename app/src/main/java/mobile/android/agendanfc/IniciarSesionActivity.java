@@ -12,13 +12,14 @@ public class IniciarSesionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
+
     }
     public void irInicio(View view){
-        Intent i = new Intent(this,WhatsappActivity.class);
+        Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
-    public void irMenuPrincipal(View view){
+    /*public void irMenuPrincipal(View view){
         Intent i = new Intent(this,GrabarNFCActivity.class);
         startActivity(i);
-    }
+    }*/
 }

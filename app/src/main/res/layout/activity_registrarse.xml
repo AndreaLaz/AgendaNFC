@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:ems="10"
-            android:hint="nombre"
+            android:hint="nombre*"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:ems="10"
-            android:hint="correo"
+            android:hint="correo*"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="78dp"
             android:ems="10"
-            android:hint="contrasenia"
+            android:hint="contrasenia*"
             android:inputType="textPassword" />
 
         <EditText
@@ -68,7 +68,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/id_bto_escribetag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -81,10 +81,11 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/id_bto_registrarse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="registrarUsuario"
                 android:text="@string/btn_registrar_pantalla" />
         </LinearLayout>
     </LinearLayout>
