@@ -26,8 +26,8 @@ public class RegistrarseActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        correo = findViewById(R.id.correo);
-        contrasenia = findViewById(R.id.contrasenia);
+        correo = findViewById(R.id.correoIS);
+        contrasenia = findViewById(R.id.contraseniaIS);
         contraseniaRep = findViewById(R.id.contraseniaRep);
         nombredeusuario = findViewById(R.id.nombredeusuario);
     }

@@ -37,7 +37,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/correo"
+            android:id="@+id/correoIS"
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:ems="10"
@@ -46,7 +46,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/contrasenia"
+            android:id="@+id/contraseniaIS"
             android:layout_width="match_parent"
             android:layout_height="78dp"
             android:ems="10"

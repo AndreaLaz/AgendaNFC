@@ -16,10 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void irInicioSesion(View view){
-        String nombre = "andrea";
         Intent i = new Intent(this,IniciarSesionActivity.class);//de donde estamos a donde queremos ir
         startActivity(i);//para ir de una ventana a otra
-        Toast.makeText(getApplicationContext(), "Bienveni@ "+nombre+" !!",Toast.LENGTH_SHORT).show();
     }
     public void irRegistro(View view){
         Intent i = new Intent(this,RegistrarseActivity.class);//de donde estamos a donde queremos ir
