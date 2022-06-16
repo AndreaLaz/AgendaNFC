@@ -5,6 +5,8 @@
     <string name="btn_registrar_pantalla">REGISTRARSE</string>
 
     <string name="btn_cancelar">CANCELAR</string>
+    <string name="btn_home">HOME</string>
+    <string name="btn_cerrarsesion">CERRAR SESION</string>
 
     <string name="tv_or">Or</string>
     <string name="tv_registrarse">Registrarse</string>

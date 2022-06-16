@@ -4,14 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuPrincipalActivity">
+    tools:context=".MenuPrincipalActivity"
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="586dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="menuprincipal"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="290dp" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btoidhome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="irInicio"
+            android:text="@string/btn_home" />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

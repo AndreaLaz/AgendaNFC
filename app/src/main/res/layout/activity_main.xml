@@ -10,7 +10,7 @@
         android:layout_width="380dp"
         android:layout_height="130dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="586dp"
+        android:layout_marginTop="577dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
@@ -20,28 +20,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonIDiniciarsesion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="irInicioSesion"
-            android:text="@string/btn_iniciar_pantalla" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tv_or" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/buttonIDregistrarse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="irRegistro"
-            android:text="@string/btn_registrar_pantalla" />
+                <Button
+                    android:id="@+id/buttonIDiniciarsesion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="irInicioSesion"
+                    android:text="@string/btn_iniciar_pantalla" />
+
+                <TextView
+                    android:id="@+id/tvOr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/tv_or" />
+
+                <Button
+                    android:id="@+id/buttonIDregistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="irRegistro"
+                    android:text="@string/btn_registrar_pantalla" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="20sp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btoidcerrarsesion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="cerrarSesion"
+                    android:text="@string/btn_cerrarsesion"
+                    android:visibility="gone" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
