@@ -33,8 +33,8 @@ public class GrabarNFCActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_nfc);
 
-        radioMessageTypeGroup = (RadioGroup) findViewById(R.id.radioTypeMessage);
-        btnEmpezar = (Button) findViewById(R.id.id_bto_escribetag);
+            radioMessageTypeGroup = (RadioGroup) findViewById(R.id.radioTypeMessage);
+            btnEmpezar = (Button) findViewById(R.id.id_bto_escribetag);
         TextView editaelmensaje = (TextView) findViewById(R.id.editaelmensaje);
 
         btnEmpezar.setOnClickListener(new OnClickListener() {
@@ -112,6 +112,7 @@ public class GrabarNFCActivity extends AppCompatActivity {
         mCurrentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (mNfcMessage != null) {
             mNFCManager.escribirTag(mCurrentTag, mNfcMessage);
+            String mNfcMessages = mNfcMessage.toString();
             Toast.makeText(this, "Etiqueta escrita", Toast.LENGTH_SHORT).show();
             mDialog.dismiss();
         }
