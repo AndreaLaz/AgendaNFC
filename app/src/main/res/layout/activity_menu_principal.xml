@@ -23,12 +23,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btoidhome"
-            android:layout_width="wrap_content"
+            android:id="@+id/btoidcerrarsesion"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="irInicio"
-            android:text="@string/btn_home" />
+            android:onClick="cerrarSesion"
+            android:text="@string/btn_cerrarsesion"
+            android:visibility="gone" />
 
 
     </LinearLayout>

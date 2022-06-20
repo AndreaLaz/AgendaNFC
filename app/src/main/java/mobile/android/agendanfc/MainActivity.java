@@ -29,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser()!=null){
-            login.setVisibility(View.GONE);
-            registrarse.setVisibility(View.GONE);
-            cerrarSesion.setVisibility(View.VISIBLE);
-            opciones.setVisibility(View.GONE);
+        if(auth.getCurrentUser()!=null){//ESTASCONTUUSUARIO
+            irMenuPrincipal(this);
         }
 
+    }
+    public void irMenuPrincipal(MainActivity view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);//de donde estamos a donde queremos ir
+        startActivity(i);//para ir de una ventana a otra
     }
     public void irInicioSesion(View view){
         Intent i = new Intent(this,IniciarSesionActivity.class);//de donde estamos a donde queremos ir
@@ -45,13 +46,5 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this,RegistrarseActivity.class);//de donde estamos a donde queremos ir
         startActivity(i);//para ir de una ventana a otra
     }
-    public void cerrarSesion(View view){
-        auth.signOut();
-        if(auth.getCurrentUser() == null){
-            login.setVisibility(View.VISIBLE);
-            registrarse.setVisibility(View.VISIBLE);
-            cerrarSesion.setVisibility(View.GONE);
-            Toast.makeText(this,"Sesion cerrada",Toast.LENGTH_SHORT).show();
-        }
-    }
+
 }

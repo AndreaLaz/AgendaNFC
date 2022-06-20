@@ -7,6 +7,30 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:layout_width="373dp"
+        android:layout_height="534dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="18dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="mainactivity"
+            android:textSize="34sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="380dp"
         android:layout_height="130dp"
         android:layout_marginStart="16dp"
@@ -22,7 +46,7 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="93dp"
             android:layout_weight="1">
 
             <TableRow
@@ -63,14 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/btoidcerrarsesion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="cerrarSesion"
-                    android:text="@string/btn_cerrarsesion"
-                    android:visibility="gone" />
+
             </TableRow>
 
             <TableRow
