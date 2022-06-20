@@ -16,13 +16,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgendaNFC">
-        <activity android:name=".WhatsappActivity"
+        <activity
+            android:name=".GrabarWhattsapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GrabarLlamadaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AniadirContActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WhatsappActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="http"
-                    android:host="api.whatsapp.com"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="api.whatsapp.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
@@ -49,11 +62,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="http" android:host="patata.com" />
+
+                <data
+                    android:host="patata.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>
