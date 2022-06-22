@@ -1,5 +1,6 @@
 package mobile.android.agendanfc;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(auth.getCurrentUser()!=null){//ESTASCONTUUSUARIO
             irMenuPrincipal(this);
+        }else{
+            /*AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+            builder1.setMessage("Debes registrarte o iniciar sesion para poder usar la aplicacion");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton("OK",(diaog , id)->{ dialog.cancel();});*/
+            Toast.makeText(this,"Debes registrarte o iniciar sesion para poder usar la aplicacion",Toast.LENGTH_SHORT).show();
         }
 
     }

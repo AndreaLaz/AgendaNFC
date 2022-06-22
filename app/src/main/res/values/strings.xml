@@ -8,11 +8,24 @@
     <string name="btn_home">HOME</string>
     <string name="btn_cerrarsesion">CERRAR SESION</string>
 
+    <string name="btn_aniadirContacto">AÑADIR NUEVO CONTACTO</string>
+    <string name="btn_misContacto">MIS CONTACTOS</string>
+    <string name="btn_otrasFuncionalidades">OTROS</string>
+
+    <string name="btn_guardarFormu">GUARDAR</string>
+
+    <string name="BTO_escrTag">ESCRIBE TAG</string>
+
     <string name="tv_or">Or</string>
     <string name="tv_registrarse">Registrarse</string>
     <string name="tv_iniciarsesion">Iniciar Sesion</string>
+    <string name="tv_formulario">Formulario</string>
 
-    <string name="BTO_escrTag">ESCRIBE TAG</string>
+    <string name="tv_NombreContacto">Nombre :</string>
+    <string name="tv_NumTelefono">Número de Teléfono:</string>
+    <string name="tv_NumTAppMensajeria">Número de Mensajería:</string>
+
+
 
 
 </resources>

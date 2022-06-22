@@ -30,6 +30,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             cerrarSesion.setVisibility(View.VISIBLE);
         }
     }
+    public void irFormulario(View view){
+        Intent i = new Intent(this,FormularioActivity.class);
+        startActivity(i);
+    }
     public void irInicio(MenuPrincipalActivity view){
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);

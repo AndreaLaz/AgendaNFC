@@ -9,18 +9,58 @@
     >
 
     <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="586dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="338dp"
+        android:layout_height="484dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="36dp"
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/bto_id_aniadirContacto"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:onClick="irFormulario"
+            android:text="@string/btn_aniadirContacto" />
+
+        <Button
+            android:id="@+id/bto_id_misContacto"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:text="@string/btn_misContacto"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/bto_id_otros"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:text="@string/btn_otrasFuncionalidades"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="349dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="47dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btoidcerrarsesion"
