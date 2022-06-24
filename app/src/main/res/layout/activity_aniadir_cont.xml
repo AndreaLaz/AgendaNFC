@@ -6,42 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".AniadirContActivity">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="178dp"
-        android:onClick="irGrabarWhattsap"
-        android:text="+"
+    <LinearLayout
+        android:layout_width="378dp"
+        android:layout_height="656dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="38dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:onClick="irGrabarLlamada"
-        android:text="+"
-        app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:text="Escribir whatsap"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button5"
-        app:layout_constraintStart_toEndOf="@+id/button5" />
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:gravity="center"
+                android:onClick="irGrabarLlamada"
+                android:text="@string/btn_mas" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:text="Escribir llamada"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button6"
-        app:layout_constraintStart_toEndOf="@+id/button6" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:text="Escribir llamada" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:gravity="center"
+                android:onClick="irGrabarWhattsap"
+                android:text="@string/btn_mas" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:text="Escribir whatsap" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="irMenuPrincipal"
+            android:text="@string/btn_home" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

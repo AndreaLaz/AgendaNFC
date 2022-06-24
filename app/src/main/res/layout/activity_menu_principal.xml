@@ -36,9 +36,10 @@
             android:id="@+id/bto_id_misContacto"
             android:layout_width="match_parent"
             android:layout_height="101dp"
-            android:text="@string/btn_misContacto"
             android:layout_margin="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:onClick="irContactos"
+            android:text="@string/btn_misContacto" />
 
         <Button
             android:id="@+id/bto_id_otros"

@@ -2,6 +2,8 @@ package mobile.android.agendanfc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,69 +15,99 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 //import java.util.ArrayList;
 
-import mobile.android.agendanfc.modelo.Contacto;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormularioActivity extends AppCompatActivity {
-    private EditText editText_NombreContacto,editText_Telefono,editText_Mensajeria;
-    //private ArrayList<Contacto> contactos = new ArrayList();
 
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-
-    private Button guardar;
-
-    private FirebaseAuth mAuth;
+    EditText nombre,telefono,mensajeria;
+    Button guardar;
+    private FirebaseFirestore bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
-        editText_NombreContacto = findViewById(R.id.editTextNombreContacto);
-        editText_Telefono = findViewById(R.id.editTextTelefono);
-        editText_Mensajeria = findViewById(R.id.editTextMensajeria);
+        this.setTitle("Añadir Contacto");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        bd = FirebaseFirestore.getInstance();//apuntamos a la bbdd
 
-        guardar = (Button) findViewById(R.id.buttonguardarFormulario);
+        nombre = findViewById(R.id.editTextNombreContacto);
+        telefono = findViewById(R.id.editTextTelefono);
+        mensajeria = findViewById(R.id.editTextMensajeria);
+        guardar = (Button) findViewById(R.id.saveButton);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Contactos");
-
-        /*guardar.setOnClickListener(new View.OnClickListener() {
+        guardar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                guardarFormulario(editText_NombreContacto.getText().toString(),Double.parseDouble( editText_Telefono.getText()+"" ),Double.parseDouble(editText_Mensajeria.getText()+"" ));
+            public void onClick(View v) {
+                String nombreContacto = nombre.getText().toString().trim();
+                String numeroTelefono = telefono.getText().toString().trim();
+                String numeroMensajeria = mensajeria.getText().toString().trim();
+
+                int tamanioNumero = 0;
+                tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+
+                if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                }else if(tamanioNumero<9){
+                    Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                }else
+                    guardarContacto(nombreContacto,numeroTelefono,numeroMensajeria);
             }
-        });*/
+        });
 
-        guardar.setOnClickListener(v ->
-                guardarFormulario(editText_NombreContacto.getText().toString(),Double.parseDouble( editText_Telefono.getText()+"" ),Double.parseDouble(editText_Mensajeria.getText()+"" ))
-        );
+    }//FINonCreate
+
+    private void guardarContacto(String nombreContacto, String numeroTelefono, String numeroMensajeria) {
+        String prefijoEsp = "+34";
+
+        Map<String,Object> map = new  HashMap<>();
+        map.put("AppMensajeria",prefijoEsp+numeroMensajeria);
+        map.put("Telefono",numeroTelefono);
+        map.put("Nombre",nombreContacto);
+
+
+        bd.collection("Contactos").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Contacto CREADO!!!!",Toast.LENGTH_SHORT).show();
+                //finish();
+                //continuar(nombreContacto, numeroTelefono,  numeroMensajeria);
+                startActivity(new Intent(FormularioActivity.this,AniadirContActivity.class));
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"ERROR!!!!",Toast.LENGTH_LONG).show();
+
+            }
+        });
 
     }
 
-    public void guardarFormulario(String nombre,Double telf,Double mensj){
+    public int contarCaracteres(String cadena, int tamanioNumero) {
 
-        Contacto agendaContactos = new Contacto(nombre,telf,mensj);
-        if(mAuth.getCurrentUser()!=null){
-            //guardarlo en bbdd
-            //getUid()) es un id unico PK
-            myRef.child(mAuth.getCurrentUser().getUid()).setValue(agendaContactos).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Toast.makeText(FormularioActivity.this,"Tu contacto "+editText_NombreContacto+"se ha guardado correctamente",Toast.LENGTH_SHORT).show();
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(FormularioActivity.this,"OJO!!!!\n Tu contacto NO se ha guardado correctamente",Toast.LENGTH_SHORT).show();
-                }
-            });
+        String numeros ="";
+        for (int i =0;i<cadena.length();i++){
+            if (Character.isDigit(cadena.charAt(i))){
+                tamanioNumero++;
+                numeros+=cadena.charAt(i);
+            }
         }
+        return tamanioNumero;
     }
-}
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+}//FINclass

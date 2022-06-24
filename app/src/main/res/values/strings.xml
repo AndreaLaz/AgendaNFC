@@ -13,6 +13,10 @@
     <string name="btn_otrasFuncionalidades">OTROS</string>
 
     <string name="btn_guardarFormu">GUARDAR</string>
+    <string name="btn_recuperar">RECUPERAR</string>
+    <string name="btn_eliminar">ELIMINAR</string>
+
+    <string name="btn_mas">+</string>
 
     <string name="BTO_escrTag">ESCRIBE TAG</string>
 
@@ -24,8 +28,6 @@
     <string name="tv_NombreContacto">Nombre :</string>
     <string name="tv_NumTelefono">Número de Teléfono:</string>
     <string name="tv_NumTAppMensajeria">Número de Mensajería:</string>
-
-
 
 
 </resources>

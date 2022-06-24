@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobile.android.agendanfc" >
+    package="mobile.android.agendanfc">
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +15,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AgendaNFC" >
+        android:theme="@style/Theme.AgendaNFC">
+        <activity
+            android:name=".ContactosActivity"
+            android:exported="false" />
         <activity
             android:name=".FormularioActivity"
             android:exported="false" />
@@ -30,7 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".WhatsappActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -43,7 +46,7 @@
         </activity>
         <activity
             android:name=".GrabarNFCActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERES" />
             </intent-filter>
@@ -59,7 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

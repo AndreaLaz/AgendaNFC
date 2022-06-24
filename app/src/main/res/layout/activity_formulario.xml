@@ -45,13 +45,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="right">
 
@@ -69,12 +69,13 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </TableRow>
 
             <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="right">
 
@@ -91,12 +92,13 @@
                     android:layout_width="169dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </TableRow>
 
             <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="right">
 
@@ -114,23 +116,51 @@
                     android:layout_width="131dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             </TableRow>
 
             <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/buttonguardarFormulario"
+                    android:id="@+id/saveButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:text="@string/btn_guardarFormu" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/getButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_recuperar" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_eliminar" />
             </TableRow>
         </TableLayout>
 

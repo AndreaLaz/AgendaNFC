@@ -21,4 +21,8 @@ public class AniadirContActivity extends AppCompatActivity {
         Intent i = new Intent(this,GrabarLlamadaActivity.class);
         startActivity(i);
     }
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(i);
+    }
 }

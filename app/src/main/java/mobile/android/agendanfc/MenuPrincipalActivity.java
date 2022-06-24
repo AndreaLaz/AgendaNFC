@@ -34,6 +34,11 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         Intent i = new Intent(this,FormularioActivity.class);
         startActivity(i);
     }
+    public void irContactos(View view){
+        Intent i = new Intent(this,ContactosActivity.class);
+        startActivity(i);
+    }
+
     public void irInicio(MenuPrincipalActivity view){
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);

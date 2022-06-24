@@ -31,32 +31,28 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    //
-    // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:30.1.0')
+    implementation 'androidx.appcompat:appcompat:1.4.2'//A
+    implementation 'com.google.android.material:material:1.6.1'//A
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'//AUTENTICATE SDK
+
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')//A
+
+    implementation 'com.google.firebase:firebase-analytics'//A
 
 
-    // Add the dependency for the Firebase SDK for Google Analytics
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:21.0.5'
-    implementation 'com.google.firebase:firebase-database:20.0.5'
-    //
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
 
-    //idkkk
-    // Import the BoM for the Firebase platform
+    implementation 'com.google.firebase:firebase-auth:21.0.6'//
+    implementation 'com.google.firebase:firebase-database:20.0.5'//
+    implementation 'com.google.firebase:firebase-firestore:24.2.0'//
+    implementation 'com.google.firebase:firebase-storage:20.0.1'//
+
+    testImplementation 'junit:junit:4.13.2'//A
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'//A
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'//A
+
     implementation platform('com.google.firebase:firebase-bom:30.0.0')
 
-    // Declare the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-database'//A
 
 }
