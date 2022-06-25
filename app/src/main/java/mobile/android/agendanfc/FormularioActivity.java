@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hbb20.CountryCodePicker;
 
 //import java.util.ArrayList;
 
@@ -25,9 +27,13 @@ import java.util.Map;
 
 public class FormularioActivity extends AppCompatActivity {
 
-    EditText nombre,telefono,mensajeria;
-    Button guardar;
+    EditText nombre,telefono;
+
     private FirebaseFirestore bd;
+
+    private CountryCodePicker ccp;
+    private TextView textnumeroTelefono;//textViewNumTelefono
+    Button guardar,sendCcp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +46,24 @@ public class FormularioActivity extends AppCompatActivity {
 
         nombre = findViewById(R.id.editTextNombreContacto);
         telefono = findViewById(R.id.editTextTelefono);
-        mensajeria = findViewById(R.id.editTextMensajeria);
+        //mensajeria = findViewById(R.id.editTextMensajeria);
         guardar = (Button) findViewById(R.id.saveButton);
+        inicializarView();
+
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int tamanioNumero = 0;
+
                 String nombreContacto = nombre.getText().toString().trim();
                 String numeroTelefono = telefono.getText().toString().trim();
-                String numeroMensajeria = mensajeria.getText().toString().trim();
+                String numeroMensajeria = telefono.getText().toString().trim();
 
-                int tamanioNumero = 0;
+                String codigo = ccp.getSelectedCountryCode();
+                //String pais = ccp.getSelectedCountryEnglishName();
+
+
                 tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
 
                 if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
@@ -58,18 +71,19 @@ public class FormularioActivity extends AppCompatActivity {
                 }else if(tamanioNumero<9){
                     Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
                 }else
-                    guardarContacto(nombreContacto,numeroTelefono,numeroMensajeria);
+                    guardarContacto(nombreContacto, codigo,numeroTelefono,numeroMensajeria);
             }
         });
 
     }//FINonCreate
 
-    private void guardarContacto(String nombreContacto, String numeroTelefono, String numeroMensajeria) {
-        String prefijoEsp = "+34";
+    private void guardarContacto(String nombreContacto, String codigo,String numeroTelefono, String numeroMensajeria) {
+        String mas = "+";
+        String espacio = " ";
 
         Map<String,Object> map = new  HashMap<>();
-        map.put("AppMensajeria",prefijoEsp+numeroMensajeria);
-        map.put("Telefono",numeroTelefono);
+        map.put("AppMensajeria",mas+codigo+espacio+numeroMensajeria);
+        map.put("Telefono",mas+codigo+espacio+numeroTelefono);
         map.put("Nombre",nombreContacto);
 
 
@@ -103,6 +117,14 @@ public class FormularioActivity extends AppCompatActivity {
         }
         return tamanioNumero;
     }
+
+    private void inicializarView(){
+        ccp = (CountryCodePicker) findViewById(R.id.countryCodePicker);
+        textnumeroTelefono=(EditText) findViewById(R.id.editTextTelefono);
+        sendCcp=(Button) findViewById(R.id.saveButton);
+
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

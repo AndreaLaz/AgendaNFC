@@ -60,8 +60,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
+                    android:padding="5dp"
                     android:text="@string/tv_NombreContacto"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/editTextNombreContacto"
@@ -74,58 +75,55 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:gravity="right">
+                android:gravity="right"
+                android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/textViewNumTelefono"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="324dp"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="@string/tv_NumTelefono"
-                    android:textSize="15sp" />
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editTextTelefono"
-                    android:layout_width="169dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    <TextView
+                        android:id="@+id/textViewNumTelefono"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="@string/tv_NumTelefono"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.hbb20.CountryCodePicker
+                            android:id="@+id/countryCodePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <EditText
+                            android:id="@+id/editTextTelefono"
+                            android:layout_width="169dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:gravity="right">
-
-                <TextView
-                    android:id="@+id/textViewNumTAppMensajeria"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/tv_NumTAppMensajeria"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/editTextMensajeria"
-                    android:layout_width="131dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:gravity="center">
+                android:layout_margin="30dp"
+                android:gravity="bottom|center">
 
                 <Button
                     android:id="@+id/saveButton"
@@ -137,32 +135,9 @@
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:gravity="center">
 
-                <Button
-                    android:id="@+id/getButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btn_recuperar" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/deleteButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btn_eliminar" />
-            </TableRow>
         </TableLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
