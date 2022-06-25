@@ -1,6 +1,8 @@
 package mobile.android.agendanfc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import mobile.android.agendanfc.adapter.ContactoAdapter;
+import mobile.android.agendanfc.model.Contacto;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -30,6 +38,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             cerrarSesion.setVisibility(View.VISIBLE);
         }
     }
+
     public void irFormulario(View view){
         Intent i = new Intent(this,FormularioActivity.class);
         startActivity(i);
