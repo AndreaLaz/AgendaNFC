@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_margin="40dp"
     android:background="#6CBFB7"
     android:backgroundTint="#C9E3E0"
     android:backgroundTintMode="add"
     android:hapticFeedbackEnabled="false"
-    android:padding="10dp"
     app:cardBackgroundColor="@color/teal_200"
     app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp">
@@ -23,11 +22,11 @@
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:background="#73ECE0"
             android:gravity="center"
             android:text="Nombre"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -35,9 +34,9 @@
             android:layout_width="309dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:background="#00000000"
-            android:orientation="vertical"
-            android:padding="3dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView4"
@@ -55,7 +54,7 @@
                 android:gravity="left"
                 android:padding="10dp"
                 android:text="Telefono"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
 
         </LinearLayout>
@@ -73,10 +72,10 @@
             android:id="@+id/layDos"
             android:layout_width="309dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:background="#00000000"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="3dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView5"
@@ -95,10 +94,43 @@
                 android:gravity="left"
                 android:padding="10dp"
                 android:text="AppMensajeria"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
+
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tv_separacion"
+            android:textColor="@color/teal_700"
+            android:textSize="11sp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/bto_eliminar"
+                android:layout_width="77dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="50dp"
+                android:backgroundTint="#E45151"
+                android:foregroundTint="#E11010"
+                android:tint="#C10707"
+                app:srcCompat="@drawable/trash" />
+
+            <ImageView
+                android:id="@+id/bto_editar"
+                android:layout_width="51dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="60dp"
+                android:tint="#1ED125"
+                app:srcCompat="@drawable/edit_icon" />
+        </LinearLayout>
     </LinearLayout>
 
 

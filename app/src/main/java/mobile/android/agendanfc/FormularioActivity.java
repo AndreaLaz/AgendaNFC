@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 
@@ -27,7 +28,7 @@ import java.util.Map;
 
 public class FormularioActivity extends AppCompatActivity {
 
-    EditText nombre,telefono;
+    EditText nombre,telefono,mensajeria;
 
     private FirebaseFirestore bd;
 
@@ -39,6 +40,7 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+        String id = getIntent().getStringExtra("id_contacto");
 
         this.setTitle("Añadir Contacto");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,36 +48,86 @@ public class FormularioActivity extends AppCompatActivity {
 
         nombre = findViewById(R.id.editTextNombreContacto);
         telefono = findViewById(R.id.editTextTelefono);
-        //mensajeria = findViewById(R.id.editTextMensajeria);
+        mensajeria = findViewById(R.id.editTextTelefono);
         guardar = (Button) findViewById(R.id.saveButton);
         inicializarView();
+        String codigo = ccp.getSelectedCountryCode();
+
+        if(id==null || id ==""){
+
+            guardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tamanioNumero = 0;
+
+                    String nombreContacto = nombre.getText().toString().trim();
+                    String numeroTelefono = telefono.getText().toString().trim();
+                    String numeroMensajeria = telefono.getText().toString().trim();
 
 
-        guardar.setOnClickListener(new View.OnClickListener() {
+                    //String pais = ccp.getSelectedCountryEnglishName();
+
+
+                    tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+
+                    if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                        Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                    }else if(tamanioNumero<9){
+                        Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                    }else
+                        guardarContacto(nombreContacto, codigo,numeroTelefono,numeroMensajeria);
+                }
+            });
+
+        }else {
+            guardar.setText("ACTUALIZAR");
+            getContacto(id,codigo);
+
+            guardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tamanioNumero = 0;
+                    String nombreContacto = nombre.getText().toString().trim();
+                    String numeroTelefono = telefono.getText().toString().trim();
+                    String numeroMensajeria = telefono.getText().toString().trim();
+                    String codigo = ccp.getSelectedCountryCode();
+                    tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+
+
+                    if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                        Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                    }else if(tamanioNumero<9){
+                        Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                    }else
+                        actualizarContacto(nombreContacto, codigo,numeroTelefono,numeroMensajeria,id);
+                }
+            });
+        }
+    }//FINonCreate
+
+    private void actualizarContacto(String nombreContacto, String codigo, String numeroTelefono, String numeroMensajeria, String id) {
+        String mas = "+";
+        String espacio = " ";
+
+        Map<String,Object> map = new  HashMap<>();
+        map.put("AppMensajeria",mas+codigo+espacio+numeroMensajeria);
+        map.put("Telefono",mas+codigo+espacio+numeroTelefono);
+        map.put("Nombre",nombreContacto);
+
+        bd.collection("Contactos").document(id).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onClick(View v) {
-                int tamanioNumero = 0;
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(),"Contacto ACTUALIZADO!!!!",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(FormularioActivity.this,MenuPrincipalActivity.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"ERROR al actualizar!!!!",Toast.LENGTH_LONG).show();
 
-                String nombreContacto = nombre.getText().toString().trim();
-                String numeroTelefono = telefono.getText().toString().trim();
-                String numeroMensajeria = telefono.getText().toString().trim();
-
-                String codigo = ccp.getSelectedCountryCode();
-                //String pais = ccp.getSelectedCountryEnglishName();
-
-
-                tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
-
-                if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
-                }else if(tamanioNumero<9){
-                    Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
-                }else
-                    guardarContacto(nombreContacto, codigo,numeroTelefono,numeroMensajeria);
             }
         });
-
-    }//FINonCreate
+    }
 
     private void guardarContacto(String nombreContacto, String codigo,String numeroTelefono, String numeroMensajeria) {
         String mas = "+";
@@ -99,7 +151,29 @@ public class FormularioActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),"ERROR!!!!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"ERROR al crear el contacto!!!!",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
+    private void getContacto( String id,String code) {
+        bd.collection("Contactos").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String nombreContacto =  documentSnapshot.getString("Nombre");
+                String telefContacto =  documentSnapshot.getString("Telefono");
+                String mensContacto =  documentSnapshot.getString("AppMensajeria");
+
+                nombre.setText(nombreContacto);
+                telefono.setText(telefContacto);
+                mensajeria.setText(mensContacto);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
             }
         });

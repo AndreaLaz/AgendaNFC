@@ -28,6 +28,7 @@ public class ContactosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
 
+
         //MOSTRA DATOS
         miFirestore = FirebaseFirestore.getInstance();
 
@@ -39,11 +40,11 @@ public class ContactosActivity extends AppCompatActivity {
         FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
                 new FirestoreRecyclerOptions.Builder<Contacto>().setQuery(query,Contacto.class).build();
 
-        miAdapter = new ContactoAdapter(firestoreRecyclerOptions);
+        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this);
         miAdapter.notifyDataSetChanged();//cada uno de los cambio
 
         miRecycler.setAdapter(miAdapter);
-//end_MOSTRA DATOS
+        //end_MOSTRA DATOS
     }
 
     @Override
