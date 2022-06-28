@@ -81,7 +81,7 @@ public class FormularioActivity extends AppCompatActivity {
 
         }else {
             guardar.setText("ACTUALIZAR");
-            getContacto(id,codigo);
+            getContacto(id);
 
             guardar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,7 +158,7 @@ public class FormularioActivity extends AppCompatActivity {
 
     }
 
-    private void getContacto( String id,String code) {
+    private void getContacto( String id ) {
         bd.collection("Contactos").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -174,6 +174,7 @@ public class FormularioActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"ERROR al obtener el contacto!!!!",Toast.LENGTH_LONG).show();
 
             }
         });

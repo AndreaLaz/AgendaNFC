@@ -120,16 +120,16 @@
                 android:layout_marginLeft="50dp"
                 android:backgroundTint="#E45151"
                 android:foregroundTint="#E11010"
-                android:tint="#C10707"
-                app:srcCompat="@drawable/trash" />
+                app:srcCompat="@drawable/trash"
+                app:tint="#C10707" />
 
             <ImageView
                 android:id="@+id/bto_editar"
                 android:layout_width="51dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="60dp"
-                android:tint="#1ED125"
-                app:srcCompat="@drawable/edit_icon" />
+                app:srcCompat="@drawable/edit_icon"
+                app:tint="#1ED125" />
         </LinearLayout>
     </LinearLayout>
 

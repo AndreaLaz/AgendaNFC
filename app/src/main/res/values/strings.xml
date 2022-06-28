@@ -28,7 +28,7 @@
     <string name="tv_NombreContacto">Nombre :</string>
     <string name="tv_NumTelefono">Número de Teléfono:</string>
     <string name="tv_NumTAppMensajeria">Número de Mensajería:</string>
-    <string name="tv_separacion">---------------------------------------------------------------------------------------------------------</string>
+    <string name="tv_separacion">----------------------------------------------------------------------------------</string>
 
 
 </resources>
