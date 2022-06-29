@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -19,7 +20,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import mobile.android.agendanfc.ContactosActivity;
 import mobile.android.agendanfc.FormularioActivity;
 import mobile.android.agendanfc.R;
 import mobile.android.agendanfc.model.Contacto;
@@ -27,7 +27,7 @@ import mobile.android.agendanfc.model.Contacto;
 public class ContactoAdapter  extends FirestoreRecyclerAdapter<Contacto,ContactoAdapter.ViewHolder> {
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     Activity activity;
-    public ContactoAdapter(@NonNull FirestoreRecyclerOptions<Contacto> options,Activity activity) {
+    public ContactoAdapter(@NonNull FirestoreRecyclerOptions<Contacto> options, Activity activity, FragmentManager supportFragmentManager) {
 
         super(options);
         this.activity = activity;

@@ -7,47 +7,45 @@
     tools:context=".ContactosActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="361dp"
-        android:layout_height="564dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="128dp"
+        android:layout_width="356dp"
+        android:layout_height="700dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSingle"
+        <SearchView
+            android:id="@+id/search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="360dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
+            android:background="#6CBFB7"
+            android:backgroundTint="#C9E3E0"
             android:gravity="center"
-            android:text="@string/btn_home" />
+            android:padding="5dp"
+            android:queryHint="Buscar contactos"
+            app:cardBackgroundColor="@color/teal_200">
+
+        </SearchView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="357dp"
+            android:layout_height="600dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSingle"
+                android:layout_width="366dp"
+                android:layout_height="598dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

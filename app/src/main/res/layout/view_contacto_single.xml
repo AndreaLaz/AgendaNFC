@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="40dp"
+    android:layout_margin="10dp"
     android:background="#6CBFB7"
     android:backgroundTint="#C9E3E0"
     android:backgroundTintMode="add"
     android:hapticFeedbackEnabled="false"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     app:cardBackgroundColor="@color/teal_200"
     app:cardCornerRadius="20dp">
 

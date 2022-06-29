@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -21,12 +22,15 @@ public class ContactosActivity extends AppCompatActivity {
     RecyclerView miRecycler;
     ContactoAdapter miAdapter;
     FirebaseFirestore miFirestore;
+    Query query;
+    SearchView search_View;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
+        search_View = findViewById(R.id.search);
 
 
         //MOSTRA DATOS
@@ -35,17 +39,60 @@ public class ContactosActivity extends AppCompatActivity {
         miRecycler = findViewById(R.id.recyclerViewSingle);
         miRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        Query query = miFirestore.collection("Contactos");
+        query = miFirestore.collection("Contactos");
 
         FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
                 new FirestoreRecyclerOptions.Builder<Contacto>().setQuery(query,Contacto.class).build();
 
-        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this);
+        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this, getSupportFragmentManager());
         miAdapter.notifyDataSetChanged();//cada uno de los cambio
 
         miRecycler.setAdapter(miAdapter);
         //end_MOSTRA DATOS
+        search_view();
     }
+    @SuppressLint("NotifyDataSetChanged")
+    private void setUpRecyclerView(){
+        miRecycler = findViewById(R.id.recyclerViewSingle);
+        miRecycler.setLayoutManager(new LinearLayoutManager(this));
+        query = miFirestore.collection("Contactos");
+
+        FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
+                new  FirestoreRecyclerOptions.Builder<Contacto>().setQuery(query,Contacto.class).build();
+
+        miAdapter = new ContactoAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+        miAdapter.notifyDataSetChanged();
+        miRecycler.setAdapter(miAdapter);
+    }
+    private void search_view(){
+        search_View.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                textSearch(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                textSearch(s);
+                return false;
+            }
+        });
+    }
+    public void textSearch(String s){
+        FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
+                new FirestoreRecyclerOptions.Builder<Contacto>()
+                .setQuery(query.orderBy("Nombre")
+                        .startAt(s).endAt(s+"~"),Contacto.class).build();
+
+        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this,getSupportFragmentManager());
+        miAdapter.startListening();
+        miRecycler.setAdapter(miAdapter);
+
+
+
+    }
+
 
     @Override
     protected void onStart() {
