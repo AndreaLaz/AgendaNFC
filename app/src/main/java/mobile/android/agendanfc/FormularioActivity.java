@@ -143,10 +143,7 @@ public class FormularioActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getApplicationContext(),"Contacto CREADO!!!!",Toast.LENGTH_SHORT).show();
-                //finish();
-                //continuar(nombreContacto, numeroTelefono,  numeroMensajeria);
                 startActivity(new Intent(FormularioActivity.this,AniadirContActivity.class));
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -169,6 +166,7 @@ public class FormularioActivity extends AppCompatActivity {
                 nombre.setText(nombreContacto);
                 telefono.setText(telefContacto);
                 mensajeria.setText(mensContacto);
+                //AQUISACA BIEN LOS DATOS//Toast.makeText(getApplicationContext(),"nombre,telf,men  "+nombreContacto+"\n "+telefContacto+"\n  "+mensContacto,Toast.LENGTH_LONG).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -178,7 +176,6 @@ public class FormularioActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public int contarCaracteres(String cadena, int tamanioNumero) {

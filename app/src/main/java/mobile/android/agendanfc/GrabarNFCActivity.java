@@ -34,7 +34,7 @@ public class GrabarNFCActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grabar_nfc);
 
             radioMessageTypeGroup = (RadioGroup) findViewById(R.id.radioTypeMessage);
-            btnEmpezar = (Button) findViewById(R.id.id_bto_escribetag);
+            btnEmpezar = (Button) findViewById(R.id.bto_aniadirLlamada);
         TextView editaelmensaje = (TextView) findViewById(R.id.editaelmensaje);
 
         btnEmpezar.setOnClickListener(new OnClickListener() {

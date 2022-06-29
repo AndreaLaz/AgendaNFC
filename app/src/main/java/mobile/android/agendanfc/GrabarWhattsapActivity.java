@@ -29,13 +29,16 @@ public class GrabarWhattsapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_whattsap);
-        grabarBoton = (Button) findViewById(R.id.button);
+
+
+        grabarBoton = (Button) findViewById(R.id.bto_escribirMensajeria);
 
         grabarBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(GrabarWhattsapActivity.this);
-                mNfcMessage = mNFCManager.grabaWhatssapp("633690063");
+                String numMensajeria = "633690063";
+                mNfcMessage = mNFCManager.grabaWhatssapp(numMensajeria);
                 builder.setMessage("Acerque la pagina")
                         .setCancelable(true)
                         .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {

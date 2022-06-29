@@ -39,6 +39,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         }
     }
 
+    public void irGrabarMenj(View view){
+        Intent i = new Intent(this,GrabarWhattsapActivity.class);
+        startActivity(i);
+    }
     public void irFormulario(View view){
         Intent i = new Intent(this,FormularioActivity.class);
         startActivity(i);
@@ -52,6 +56,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
+
     public void cerrarSesion(View view){
         auth.signOut();
         if(auth.getCurrentUser() == null){

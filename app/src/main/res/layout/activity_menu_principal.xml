@@ -45,9 +45,11 @@
             android:id="@+id/bto_id_otros"
             android:layout_width="match_parent"
             android:layout_height="101dp"
-            android:text="@string/btn_otrasFuncionalidades"
             android:layout_margin="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+
+            android:onClick="irGrabarMenj"
+            android:text="@string/btn_otrasFuncionalidades" />
     </LinearLayout>
 
     <LinearLayout

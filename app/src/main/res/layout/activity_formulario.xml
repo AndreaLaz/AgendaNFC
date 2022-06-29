@@ -125,13 +125,23 @@
                 android:layout_margin="30dp"
                 android:gravity="bottom|center">
 
-                <Button
-                    android:id="@+id/saveButton"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:foregroundGravity="center"
-                    android:gravity="center"
-                    android:text="@string/btn_guardarFormu" />
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp" />
+
+                    <Button
+                        android:id="@+id/saveButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:foregroundGravity="center"
+                        android:gravity="center"
+                        android:text="@string/btn_guardarFormu" />
+                </LinearLayout>
 
             </TableRow>
 

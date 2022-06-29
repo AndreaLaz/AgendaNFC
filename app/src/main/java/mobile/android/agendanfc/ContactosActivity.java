@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,7 +20,7 @@ import mobile.android.agendanfc.model.Contacto;
 
 public class ContactosActivity extends AppCompatActivity {
 
-    RecyclerView miRecycler;
+    RecyclerView miRecycler;//MOSTRA DATOS
     ContactoAdapter miAdapter;
     FirebaseFirestore miFirestore;
     Query query;
@@ -31,7 +32,6 @@ public class ContactosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
         search_View = findViewById(R.id.search);
-
 
         //MOSTRA DATOS
         miFirestore = FirebaseFirestore.getInstance();
@@ -46,11 +46,12 @@ public class ContactosActivity extends AppCompatActivity {
 
         miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this, getSupportFragmentManager());
         miAdapter.notifyDataSetChanged();//cada uno de los cambio
-
         miRecycler.setAdapter(miAdapter);
         //end_MOSTRA DATOS
         search_view();
     }
+
+    //region Metodos para el SearchView
     @SuppressLint("NotifyDataSetChanged")
     private void setUpRecyclerView(){
         miRecycler = findViewById(R.id.recyclerViewSingle);
@@ -88,11 +89,8 @@ public class ContactosActivity extends AppCompatActivity {
         miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this,getSupportFragmentManager());
         miAdapter.startListening();
         miRecycler.setAdapter(miAdapter);
-
-
-
     }
-
+    //endregion
 
     @Override
     protected void onStart() {
