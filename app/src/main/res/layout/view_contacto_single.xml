@@ -116,10 +116,10 @@
 
             <ImageView
                 android:id="@+id/bto_eliminar"
-                android:layout_width="77dp"
-                android:layout_height="44dp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="50dp"
+                android:layout_width="78dp"
+                android:layout_height="56dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left|center_vertical"
                 android:backgroundTint="#E45151"
                 android:foregroundTint="#E11010"
                 app:srcCompat="@drawable/trash"
@@ -132,6 +132,14 @@
                 android:layout_marginLeft="60dp"
                 app:srcCompat="@drawable/edit_icon"
                 app:tint="#1ED125" />
+
+            <ImageView
+                android:id="@+id/bto_TAG"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/nfc_icon" />
         </LinearLayout>
     </LinearLayout>
 

@@ -21,12 +21,20 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
     private Tag mCurrentTag;
     private Dialog mDialog;
 
+    Bundle bundle;//traer los datos del AniadirContactosActivity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_llamada);
 
-        mNfcMessage = mNFCManager.grabaLlamada("603751833");
+        bundle = getIntent().getExtras();//traer los datos del AniadirContactosActivity
+        String reciNumeroTelefonoNFC = bundle.getString("numeroTelefonoNFC");
+
+        mNfcMessage = mNFCManager.grabaLlamada("numeroTelefonoNFC");//603751833
+        Toast.makeText(getApplicationContext(),"\n TELEFONO reciNumeroTelefonoNFC"+reciNumeroTelefonoNFC,Toast.LENGTH_LONG).show();
+
+
     }
 
     protected void onResume() {

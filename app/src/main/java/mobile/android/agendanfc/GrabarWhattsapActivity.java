@@ -25,10 +25,16 @@ public class GrabarWhattsapActivity extends AppCompatActivity {
     private Button grabarBoton;
     private AlertDialog.Builder builder;
     AlertDialog mDialogoAlerta;
+
+    Bundle bundle;//traer los datos del AniadirContactosActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_whattsap);
+
+        bundle = getIntent().getExtras();//traer los datos del AniadirContactosActivity
+        String reciNumeroMensajeriaNFC = bundle.getString("numeroMensajeriaNFC");
+        Toast.makeText(this,"\n WHASAP111 reciNumeroTelefonoNFC"+reciNumeroMensajeriaNFC,Toast.LENGTH_LONG).show();
 
 
         grabarBoton = (Button) findViewById(R.id.bto_escribirMensajeria);
@@ -37,7 +43,9 @@ public class GrabarWhattsapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(GrabarWhattsapActivity.this);
-                String numMensajeria = "633690063";
+                Toast.makeText(getApplicationContext(),"\n WHASAP reciNumeroTelefonoNFC"+reciNumeroMensajeriaNFC,Toast.LENGTH_LONG).show();
+
+                String numMensajeria = "reciNumeroMensajeriaNFC";
                 mNfcMessage = mNFCManager.grabaWhatssapp(numMensajeria);
                 builder.setMessage("Acerque la pagina")
                         .setCancelable(true)

@@ -69,7 +69,7 @@
         android:background="#00BCD4"
         android:backgroundTint="#00BCD4"
         android:shadowColor="#3F51B5"
-        android:text="nfcapp"
+        android:text="OTRO"
         android:textColor="#455A64"
         android:textSize="48sp"
         android:verticalScrollbarPosition="defaultPosition"

@@ -20,7 +20,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import mobile.android.agendanfc.AniadirContActivity;
 import mobile.android.agendanfc.FormularioActivity;
+import mobile.android.agendanfc.GrabarWhattsapActivity;
 import mobile.android.agendanfc.R;
 import mobile.android.agendanfc.model.Contacto;
 
@@ -37,6 +39,7 @@ public class ContactoAdapter  extends FirestoreRecyclerAdapter<Contacto,Contacto
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Contacto model) {
         DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
         final String id = documentSnapshot.getId();
+
 
         holder.name.setText(model.getNombre());
         holder.phone.setText(model.getTelefono());
@@ -57,6 +60,22 @@ public class ContactoAdapter  extends FirestoreRecyclerAdapter<Contacto,Contacto
                 deleteContacto(id);
             }
         });
+        holder.tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent i = new Intent(activity, AniadirContActivity.class);
+                i.putExtra("id_contacto",id);
+                activity.startActivity(i);*/
+
+
+                Intent i = new Intent(activity, AniadirContActivity.class);
+                i.putExtra("id_contacto",id);
+                activity.startActivity(i);;
+
+            }
+        });
+
+
     }
     private void deleteContacto(String id){
         mFirestore.collection("Contactos").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -88,7 +107,7 @@ public class ContactoAdapter  extends FirestoreRecyclerAdapter<Contacto,Contacto
     public class ViewHolder extends RecyclerView.ViewHolder {//instancia
 
         TextView name , phone , appt;
-        ImageView delete,edit;
+        ImageView delete,edit,tag;//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name= itemView.findViewById(R.id.nombre);
@@ -96,6 +115,7 @@ public class ContactoAdapter  extends FirestoreRecyclerAdapter<Contacto,Contacto
             appt = itemView.findViewById(R.id.aplicacionM);
             delete = itemView.findViewById(R.id.bto_eliminar);
             edit = itemView.findViewById(R.id.bto_editar);
+            tag = itemView.findViewById(R.id.bto_TAG);//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         }
     }
 }
