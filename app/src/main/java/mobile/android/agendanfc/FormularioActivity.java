@@ -65,10 +65,7 @@ public class FormularioActivity extends AppCompatActivity {
                     String nombreContacto = nombre.getText().toString().trim();
                     String numeroTelefono = telefono.getText().toString().trim();
                     String numeroMensajeria = telefono.getText().toString().trim();
-
-
                     //String pais = ccp.getSelectedCountryEnglishName();
-
 
                     tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
 
@@ -107,10 +104,41 @@ public class FormularioActivity extends AppCompatActivity {
         }
     }//FINonCreate
 
+    public void irAniadirContactos(Void view){
+        Intent i = new Intent(this,AniadirContActivity.class);
+        startActivity(i);
+    }
+    private  void irAniadirContactos(){
+        startActivity(new Intent(FormularioActivity.this,AniadirContActivity.class));
+    }
+
+    private void guardarContacto(String nombreContacto, String codigo,String numeroTelefono, String numeroMensajeria) {
+        String mas = "+";
+        //String espacio = " ";
+        Map<String,Object> map = new  HashMap<>();
+        map.put("AppMensajeria",mas+codigo+numeroMensajeria);
+        map.put("Telefono",mas+codigo+numeroTelefono);
+        map.put("Nombre",nombreContacto);
+
+        bd.collection("Contactos").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Contacto CREADO!!!!",Toast.LENGTH_SHORT).show();
+                irAniadirContactos();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"ERROR al crear el contacto!!!!",Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+
     private void actualizarContacto(String nombreContacto, String codigo, String numeroTelefono, String numeroMensajeria, String id) {
         String mas = "+";
         //String espacio = " ";
-
         Map<String,Object> map = new  HashMap<>();
         map.put("AppMensajeria",mas+codigo+numeroMensajeria);
         map.put("Telefono",mas+codigo+numeroTelefono);
@@ -130,40 +158,7 @@ public class FormularioActivity extends AppCompatActivity {
             }
         });
     }
-    public void irAniadirContactos(Void view){
-        Intent i = new Intent(this,AniadirContActivity.class);
-        startActivity(i);
-    }
-
-    private  void irAniadirContactos(){
-        startActivity(new Intent(FormularioActivity.this,AniadirContActivity.class));
-    }
-    private void guardarContacto(String nombreContacto, String codigo,String numeroTelefono, String numeroMensajeria) {
-        String mas = "+";
-        //String espacio = " ";
-
-        Map<String,Object> map = new  HashMap<>();
-        map.put("AppMensajeria",mas+codigo+numeroMensajeria);
-        map.put("Telefono",mas+codigo+numeroTelefono);
-        map.put("Nombre",nombreContacto);
-
-
-        bd.collection("Contactos").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Contacto CREADO!!!!",Toast.LENGTH_SHORT).show();
-                irAniadirContactos();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),"ERROR al crear el contacto!!!!",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-    }
-
+    
     private void getContacto( String id ) {
         bd.collection("Contactos").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -188,7 +183,6 @@ public class FormularioActivity extends AppCompatActivity {
     }
 
     public int contarCaracteres(String cadena, int tamanioNumero) {
-
         String numeros ="";
         for (int i =0;i<cadena.length();i++){
             if (Character.isDigit(cadena.charAt(i))){
@@ -203,7 +197,6 @@ public class FormularioActivity extends AppCompatActivity {
         ccp = (CountryCodePicker) findViewById(R.id.countryCodePicker);
         textnumeroTelefono=(EditText) findViewById(R.id.editTextTelefono);
         sendCcp=(Button) findViewById(R.id.saveButton);
-
     }
 
     @Override
