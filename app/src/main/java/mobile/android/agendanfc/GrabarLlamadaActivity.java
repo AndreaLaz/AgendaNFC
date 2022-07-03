@@ -12,6 +12,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,9 +27,10 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
     private Button grabaLlamada,home;
     private TextView instrucciones;
     private AlertDialog.Builder builder;
-    AlertDialog mDialogoAlerta;
+    private AlertDialog mDialogoAlerta;
 
-    boolean escribir;
+    String detectar_segunfo = "";
+    String numeroCont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +38,17 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grabar_llamada);
         grabaLlamada = findViewById(R.id.buttonGrabarLlamada);
         instrucciones = findViewById(R.id.textInstrucciones);
-        instrucciones.setText("Acerque el teléfono a la agenda en la pagina AZUL donde quiera guardar su contacto");
+        instrucciones.setText(Html.fromHtml("<font color='#040504'>Cuando tenga lista la pagina</font> TELÉFONO <font color='#040504'> de la agenda presione en </font> GRABAR CONTACTO"));
 
-        String numeroCont = getIntent().getStringExtra("numeroCont");
+        numeroCont = getIntent().getStringExtra("numeroCont");
+        detectar_segunfo = getIntent().getStringExtra("NFC2");
 
         grabaLlamada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(GrabarLlamadaActivity.this);
                 mNfcMessage = mNFCManager.grabaLlamada(numeroCont);
-                builder.setMessage("Acerque la pagina")
+                builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'>Telefono</font> de sus contacto en la agenda"))
                         .setCancelable(true)
                         .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
                             @Override
@@ -53,8 +56,10 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
                                 mDialogoAlerta.dismiss();
                             }
                         });
-                builder.setTitle("graba");
                 mDialogoAlerta= builder.show();
+                TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
+                textView.setTextSize(25);
+
             }
         });
     }
@@ -88,23 +93,53 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         if (mNfcMessage != null) {
             mNFCManager.escribirTag(mCurrentTag, mNfcMessage);
             AlertDialog.Builder escrito = new AlertDialog.Builder(GrabarLlamadaActivity.this);
-            escrito.setMessage("Escritura Terminada")
-                    .setCancelable(false)
-                    .setPositiveButton("Okey", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            mDialogoAlerta.dismiss();
-                            dialogInterface.cancel();
-                        }
-                    });
-            escrito.setTitle("graba?");
-            escrito.show();
+            if (detectar_segunfo==null || detectar_segunfo==""){
+                escrito.setMessage(Html.fromHtml("¿Quieres agregar tambien el <font color='#75D113'>Whattsap</font> de su contacto"))
+                        .setCancelable(false)
+                        .setPositiveButton("VALE", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mDialogoAlerta.dismiss();
+                                dialogInterface.cancel();
+                                irGrabarWhattsap(numeroCont,"es_segundo");
+                            }
+                        })
+                        .setNegativeButton("Más Tarde", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mDialogoAlerta.dismiss();
+                                dialogInterface.cancel();
+                                irMenuPrincipal(instrucciones);
+                            }
+                        });
+            }else{
+                escrito.setMessage("¡Ya has finaliazado de guardar el contacto en la agenda!")
+                        .setCancelable(false)
+                        .setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                irMenuPrincipal(instrucciones);
+                            }
+                        });
+            }
+
+            escrito.setTitle(Html.fromHtml("<big>¡Contacto Añadido a la agenda correctamente!</big>"));
+            mDialogoAlerta=escrito.show();
+            TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
+            textView.setTextSize(25);
         }
-        Toast.makeText(this, "Etiqueta Whattsap", Toast.LENGTH_SHORT).show();
 
     }
     public void irMenuPrincipal(View view){
         Intent i = new Intent(this,MenuPrincipalActivity.class);
         startActivity(i);
+    }
+    public void irGrabarWhattsap(String id, String segundo_paso){
+
+        Intent i = new Intent(this, GrabaWhattsapActivity.class);
+        i.putExtra("numeroCont",id);
+        i.putExtra("NFC2",segundo_paso);
+        startActivity(i);
+
     }
 }
