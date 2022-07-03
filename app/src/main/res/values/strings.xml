@@ -29,9 +29,16 @@
     <string name="tv_NumTelefono">Número de Teléfono:</string>
     <string name="tv_NumTAppMensajeria">Número de Mensajería:</string>
     <string name="tv_separacion">----------------------------------------------------------------------------------</string>
-    <string name="grabarllamada">GrabarLlamada</string>
+    <string name="grabarllamada">Grabar Contacto</string>
+
     <string name="instrucciones_de_uso">Instrucciones de uso:</string>
     <string name="imagen_guia">imagen guia</string>
+
+    <string name="nada"></string>
+
+
+
+
 
 
 

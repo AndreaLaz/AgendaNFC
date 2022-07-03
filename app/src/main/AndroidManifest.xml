@@ -19,11 +19,13 @@
         <activity
             android:name=".GrabaWhattsapActivity"
             android:exported="false"
+            android:theme="@style/Theme.AgendaNFCnoactionBar"
             />
 
         <activity
             android:name=".GrabarLlamadaActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.AgendaNFCnoactionBar">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="irMenuPrincipal"
     tools:context=".GrabarLlamadaActivity">
 
     <FrameLayout
@@ -19,9 +20,10 @@
 
         <Button
             android:id="@+id/buttonGrabarLlamada"
-            android:layout_width="157dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/BTO_AZULCLARO"
             android:text="@string/grabarllamada"
             android:textAlignment="center" />
     </FrameLayout>
@@ -40,23 +42,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textInstrucciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:text="@string/instrucciones_de_uso"
-            android:textSize="25sp" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/homeid"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/black_home"
+                android:backgroundTint="@color/BTO_HOME_turquesa"
+                android:contentDescription="@string/nada"
+                android:onClick="irMenuPrincipal"
+                android:text="." />
+
+            <TextView
+                android:id="@+id/textInstrucciones"
+                android:layout_width="match_parent"
+                android:layout_height="142dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/instrucciones_de_uso"
+                android:textAlignment="center"
+                android:textColor="@color/BTO_AZULCLARO"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imagenTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/telefono_grabar"
-            android:contentDescription="@string/imagen_guia" />
+            android:contentDescription="@string/imagen_guia"
+            app:srcCompat="@drawable/telefono_grabar" />
 
     </LinearLayout>
 

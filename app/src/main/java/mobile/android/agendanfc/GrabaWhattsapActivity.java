@@ -33,7 +33,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graba_whattsap);
         bto_grabaWhattsapp = findViewById(R.id.buttonGrabarWhattsap);
         instrucciones = findViewById(R.id.textInstruccionesw);
-        instrucciones.setText("Acerque el telefono a la agenda telefonica");
+        instrucciones.setText("Acerque el teléfono a la agenda en la pagina VERDE donde quiera guardar su contacto");
 
         String numeroCont = getIntent().getStringExtra("numeroCont");
 
@@ -100,5 +100,10 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "Etiqueta Whattsap", Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,AniadirContActivity.class);
+        startActivity(i);
     }
 }

@@ -19,10 +19,11 @@
 
         <Button
             android:id="@+id/buttonGrabarWhattsap"
-            android:layout_width="157dp"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="GrabarLlamada"
+            android:backgroundTint="@color/BTO_VERDECLARO"
+            android:text="@string/grabarllamada"
             android:textAlignment="center" />
     </FrameLayout>
 
@@ -40,20 +41,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textInstruccionesw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:text="Instrucciones de uso:"
-            android:textSize="25dp" />
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/homeid"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/black_home"
+                android:backgroundTint="@color/BTO_HOME_turquesa"
+                android:onClick="irMenuPrincipal"
+                android:text="@string/nada" />
+
+            <TextView
+                android:id="@+id/textInstruccionesw"
+                android:layout_width="339dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Instrucciones de uso:"
+                android:textAlignment="center"
+                android:textColor="@color/BTO_VERDECLARO"
+                android:textSize="25dp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imagenWhattsap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="479dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono__graba_whatsap" />
 

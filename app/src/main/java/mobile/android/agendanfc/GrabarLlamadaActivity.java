@@ -23,7 +23,7 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
     private NfcAdapter nfcAdpt;
     private Tag mCurrentTag;
 
-    private Button grabaLlamada;
+    private Button grabaLlamada,home;
     private TextView instrucciones;
     private AlertDialog.Builder builder;
     AlertDialog mDialogoAlerta;
@@ -36,7 +36,7 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grabar_llamada);
         grabaLlamada = findViewById(R.id.buttonGrabarLlamada);
         instrucciones = findViewById(R.id.textInstrucciones);
-        instrucciones.setText("Acerque el telefono a la agenda telefonica");
+        instrucciones.setText("Acerque el teléfono a la agenda en la pagina AZUL donde quiera guardar su contacto");
 
         String numeroCont = getIntent().getStringExtra("numeroCont");
 
@@ -102,5 +102,9 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "Etiqueta Whattsap", Toast.LENGTH_SHORT).show();
 
+    }
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(i);
     }
 }
