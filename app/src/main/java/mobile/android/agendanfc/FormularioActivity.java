@@ -32,7 +32,6 @@ public class FormularioActivity extends AppCompatActivity {
 
     EditText nombre,telefono,mensajeria;
 
-    private FirebaseFirestore bd;
 
     private CountryCodePicker ccp;
     private TextView textnumeroTelefono;//textViewNumTelefono
