@@ -18,10 +18,17 @@
         android:theme="@style/Theme.AgendaNFC" >
         <activity
             android:name=".GrabaWhattsapActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
+
         <activity
             android:name=".GrabarLlamadaActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ContactosActivity"
             android:exported="false" />
@@ -38,7 +45,7 @@
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-
+                <action android:name="android.nfc.action.NDEF_DISCOVERES" />
                 <data
                     android:host="api.whatsapp.com"
                     android:scheme="http" />

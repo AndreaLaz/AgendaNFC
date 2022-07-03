@@ -32,6 +32,8 @@ public class AniadirContActivity extends AppCompatActivity {
         masLlamada = (Button) findViewById(R.id.bto_irGrabarLlamada);
         masMensajeria = (Button) findViewById(R.id.bto_irGrabarLMensajeria);
 
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+
         masLlamada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

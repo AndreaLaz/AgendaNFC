@@ -27,6 +27,9 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
     private TextView instrucciones;
     private AlertDialog.Builder builder;
     AlertDialog mDialogoAlerta;
+
+    boolean escribir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,7 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
             mNFCManager.verificarNFC(nfcAdpt);
             Intent nfcIntent = new Intent(this, getClass());
             nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,PendingIntent.FLAG_MUTABLE);
             IntentFilter[] intentFiltersArray = new IntentFilter[]{};
             String[][] techList = new String[][]{{android.nfc.tech.Ndef.class.getName()}, {android.nfc.tech.NdefFormatable.class.getName()}};
             nfcAdpt = NfcAdapter.getDefaultAdapter(this);

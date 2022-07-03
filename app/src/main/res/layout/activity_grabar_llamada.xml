@@ -22,7 +22,7 @@
             android:layout_width="157dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="GrabarLlamada"
+            android:text="@string/grabarllamada"
             android:textAlignment="center" />
     </FrameLayout>
 
@@ -47,15 +47,16 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="Instrucciones de uso:"
-            android:textSize="25dp" />
+            android:text="@string/instrucciones_de_uso"
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/imagenTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/telefono_grabar" />
+            app:srcCompat="@drawable/telefono_grabar"
+            android:contentDescription="@string/imagen_guia" />
 
     </LinearLayout>
 

@@ -41,7 +41,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(GrabaWhattsapActivity.this);
-                mNfcMessage = mNFCManager.grabaLlamada(numeroCont);
+                mNfcMessage = mNFCManager.grabaWhatssapp("+"+numeroCont);
                 builder.setMessage("Acerque la pagina")
                         .setCancelable(true)
                         .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -62,7 +62,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
             mNFCManager.verificarNFC(nfcAdpt);
             Intent nfcIntent = new Intent(this, getClass());
             nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,PendingIntent.FLAG_IMMUTABLE);
             IntentFilter[] intentFiltersArray = new IntentFilter[]{};
             String[][] techList = new String[][]{{android.nfc.tech.Ndef.class.getName()}, {android.nfc.tech.NdefFormatable.class.getName()}};
             nfcAdpt = NfcAdapter.getDefaultAdapter(this);
