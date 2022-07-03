@@ -41,6 +41,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'//A
 
     implementation 'com.google.firebase:firebase-auth:21.0.6'//
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'//
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.5'//
     implementation 'com.google.firebase:firebase-firestore:24.2.0'//
     implementation 'com.google.firebase:firebase-storage:20.0.1'//

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:background="#6CBFB7"
     android:backgroundTint="#C9E3E0"
     android:backgroundTintMode="add"
     android:hapticFeedbackEnabled="false"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    app:cardBackgroundColor="@color/teal_200"
+    app:cardBackgroundColor="#2970CA"
     app:cardCornerRadius="20dp">
 
     <LinearLayout
@@ -25,10 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="#73ECE0"
+            android:background="#087E8B"
+            android:padding="20dp"
             android:gravity="center"
             android:text="Nombre"
             android:textSize="22sp"
+            android:textColor="#2F2D2E"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -45,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Número de Teléfono:"
-                android:textSize="16sp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -54,9 +56,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:gravity="left"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="Telefono"
-                android:textSize="22sp" />
+                android:textSize="20dp" />
 
 
         </LinearLayout>
@@ -67,7 +69,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tv_separacion"
-            android:textColor="@color/teal_700"
+            android:textColor="#2F2D2E"
             android:textSize="11sp" />
 
         <LinearLayout
@@ -85,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text=" Número de AppMensajería:"
-                android:textSize="16sp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -94,9 +96,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:gravity="left"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="AppMensajeria"
-                android:textSize="22sp" />
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -106,19 +108,20 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tv_separacion"
-            android:textColor="@color/teal_700"
+            android:textColor="#2F2D2E"
             android:textSize="11sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/bto_eliminar"
-                android:layout_width="78dp"
-                android:layout_height="56dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
                 android:layout_gravity="left|center_vertical"
                 android:backgroundTint="#E45151"
                 android:foregroundTint="#E11010"
@@ -127,18 +130,19 @@
 
             <ImageView
                 android:id="@+id/bto_editar"
-                android:layout_width="51dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 app:srcCompat="@drawable/edit_icon"
                 app:tint="#1ED125" />
 
             <ImageView
                 android:id="@+id/bto_TAG"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
+                android:layout_weight="25"
                 app:srcCompat="@drawable/nfc_icon" />
         </LinearLayout>
     </LinearLayout>

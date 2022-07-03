@@ -104,7 +104,9 @@
                         <com.hbb20.CountryCodePicker
                             android:id="@+id/countryCodePicker"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:ccp_defaultLanguage="SPANISH"
+                            app:ccp_defaultNameCode="ES"/>
 
                         <EditText
                             android:id="@+id/editTextTelefono"

@@ -2,41 +2,59 @@ package mobile.android.agendanfc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GrabarLlamadaActivity extends AppCompatActivity {
-
     NFCManager mNFCManager = new  NFCManager(this);
     NdefMessage mNfcMessage;
     private NfcAdapter nfcAdpt;
     private Tag mCurrentTag;
-    private Dialog mDialog;
 
-    Bundle bundle;//traer los datos del AniadirContactosActivity
-
+    private Button grabaLlamada;
+    private TextView instrucciones;
+    private AlertDialog.Builder builder;
+    AlertDialog mDialogoAlerta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_llamada);
+        grabaLlamada = findViewById(R.id.buttonGrabarLlamada);
+        instrucciones = findViewById(R.id.textInstrucciones);
+        instrucciones.setText("Acerque el telefono a la agenda telefonica");
 
-        bundle = getIntent().getExtras();//traer los datos del AniadirContactosActivity
-        String reciNumeroTelefonoNFC = bundle.getString("numeroTelefonoNFC");
+        String numeroCont = getIntent().getStringExtra("numeroCont");
 
-        mNfcMessage = mNFCManager.grabaLlamada("numeroTelefonoNFC");//603751833
-        Toast.makeText(getApplicationContext(),"\n TELEFONO reciNumeroTelefonoNFC"+reciNumeroTelefonoNFC,Toast.LENGTH_LONG).show();
-
-
+        grabaLlamada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder = new AlertDialog.Builder(GrabarLlamadaActivity.this);
+                mNfcMessage = mNFCManager.grabaLlamada(numeroCont);
+                builder.setMessage("Acerque la pagina")
+                        .setCancelable(true)
+                        .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mDialogoAlerta.dismiss();
+                            }
+                        });
+                builder.setTitle("graba");
+                mDialogoAlerta= builder.show();
+            }
+        });
     }
-
     protected void onResume() {
         super.onResume();
         try {
@@ -66,9 +84,20 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         mCurrentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (mNfcMessage != null) {
             mNFCManager.escribirTag(mCurrentTag, mNfcMessage);
-            String mNfcMessages = mNfcMessage.toString();
-            Toast.makeText(this, "Etiqueta telfe", Toast.LENGTH_SHORT).show();
-            mDialog.dismiss();
+            AlertDialog.Builder escrito = new AlertDialog.Builder(GrabarLlamadaActivity.this);
+            escrito.setMessage("Escritura Terminada")
+                    .setCancelable(false)
+                    .setPositiveButton("Okey", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mDialogoAlerta.dismiss();
+                            dialogInterface.cancel();
+                        }
+                    });
+            escrito.setTitle("graba?");
+            escrito.show();
         }
+        Toast.makeText(this, "Etiqueta Whattsap", Toast.LENGTH_SHORT).show();
+
     }
 }

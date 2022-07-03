@@ -14,39 +14,34 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class GrabarWhattsapActivity extends AppCompatActivity {
-    NFCManager mNFCManager = new  NFCManager(this);
-    NdefMessage mNfcMessage;
+public class GrabaWhattsapActivity extends AppCompatActivity {
+
+    Button bto_grabaWhattsapp;
+    private TextView instrucciones;
+    private AlertDialog.Builder builder;
+    private NdefMessage mNfcMessage;
+    private NFCManager mNFCManager = new NFCManager(this);
+    private AlertDialog mDialogoAlerta;
     private NfcAdapter nfcAdpt;
     private Tag mCurrentTag;
-    private Dialog mDialog;
-    private Button grabarBoton;
-    private AlertDialog.Builder builder;
-    AlertDialog mDialogoAlerta;
-
-    Bundle bundle;//traer los datos del AniadirContactosActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grabar_whattsap);
+        setContentView(R.layout.activity_graba_whattsap);
+        bto_grabaWhattsapp = findViewById(R.id.buttonGrabarWhattsap);
+        instrucciones = findViewById(R.id.textInstruccionesw);
+        instrucciones.setText("Acerque el telefono a la agenda telefonica");
 
-        bundle = getIntent().getExtras();//traer los datos del AniadirContactosActivity
-        String reciNumeroMensajeriaNFC = bundle.getString("numeroMensajeriaNFC");
-        Toast.makeText(this,"\n WHASAP111 reciNumeroTelefonoNFC"+reciNumeroMensajeriaNFC,Toast.LENGTH_LONG).show();
+        String numeroCont = getIntent().getStringExtra("numeroCont");
 
-
-        grabarBoton = (Button) findViewById(R.id.bto_escribirMensajeria);
-
-        grabarBoton.setOnClickListener(new View.OnClickListener() {
+        bto_grabaWhattsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder = new AlertDialog.Builder(GrabarWhattsapActivity.this);
-                Toast.makeText(getApplicationContext(),"\n WHASAP reciNumeroTelefonoNFC"+reciNumeroMensajeriaNFC,Toast.LENGTH_LONG).show();
-
-                String numMensajeria = "reciNumeroMensajeriaNFC";
-                mNfcMessage = mNFCManager.grabaWhatssapp(numMensajeria);
+                builder = new AlertDialog.Builder(GrabaWhattsapActivity.this);
+                mNfcMessage = mNFCManager.grabaLlamada(numeroCont);
                 builder.setMessage("Acerque la pagina")
                         .setCancelable(true)
                         .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -57,6 +52,7 @@ public class GrabarWhattsapActivity extends AppCompatActivity {
                         });
                 builder.setTitle("graba");
                 mDialogoAlerta= builder.show();
+
             }
         });
     }
@@ -89,7 +85,7 @@ public class GrabarWhattsapActivity extends AppCompatActivity {
         mCurrentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (mNfcMessage != null) {
             mNFCManager.escribirTag(mCurrentTag, mNfcMessage);
-            AlertDialog.Builder escrito = new AlertDialog.Builder(GrabarWhattsapActivity.this);
+            AlertDialog.Builder escrito = new AlertDialog.Builder(GrabaWhattsapActivity.this);
             escrito.setMessage("Escritura Terminada")
                     .setCancelable(false)
                     .setPositiveButton("Okey", new DialogInterface.OnClickListener() {

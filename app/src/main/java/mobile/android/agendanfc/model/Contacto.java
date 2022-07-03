@@ -1,14 +1,15 @@
 package mobile.android.agendanfc.model;
 
 public class Contacto {
-    String AppMensajeria,Nombre,Telefono;
+    String AppMensajeria, Nombre, Telefono;
 
     public Contacto(){}
 
-    public Contacto(String appMensajeria, String nombre, String telefono) {
-        AppMensajeria = appMensajeria;
-        Nombre = nombre;
-        Telefono = telefono;
+    public Contacto(String AppMensajeria, String Nombre, String Telefono) {
+        this.AppMensajeria = AppMensajeria;
+        this.Nombre = Nombre;
+        this.Telefono = Telefono
+    ;
     }
 
     public String getAppMensajeria() {
@@ -16,7 +17,7 @@ public class Contacto {
     }
 
     public void setAppMensajeria(String appMensajeria) {
-        AppMensajeria = appMensajeria;
+        this.AppMensajeria = appMensajeria;
     }
 
     public String getNombre() {
@@ -24,7 +25,7 @@ public class Contacto {
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getTelefono() {
@@ -32,6 +33,6 @@ public class Contacto {
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.Telefono = telefono;
     }
 }

@@ -1,5 +1,6 @@
 package mobile.android.agendanfc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,59 +12,80 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mobile.android.agendanfc.adapter.ContactoAdapter;
 import mobile.android.agendanfc.model.Contacto;
 
 public class ContactosActivity extends AppCompatActivity {
 
-    RecyclerView miRecycler;//MOSTRA DATOS
     ContactoAdapter miAdapter;
-    FirebaseFirestore miFirestore;
-    Query query;
-    SearchView search_View;
 
+    RecyclerView recyclerView;
+    ContactoAdapter adapter;
+    private SearchView search_View;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
+
         search_View = findViewById(R.id.search);
 
-        //MOSTRA DATOS
-        miFirestore = FirebaseFirestore.getInstance();
+        recyclerView = findViewById(R.id.recyclerViewSingle);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
-        miRecycler = findViewById(R.id.recyclerViewSingle);
-        miRecycler.setLayoutManager(new LinearLayoutManager(this));
-
-        query = miFirestore.collection("Contactos");
-
-        FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
-                new FirestoreRecyclerOptions.Builder<Contacto>().setQuery(query,Contacto.class).build();
-
-        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this, getSupportFragmentManager());
-        miAdapter.notifyDataSetChanged();//cada uno de los cambio
-        miRecycler.setAdapter(miAdapter);
-        //end_MOSTRA DATOS
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseRecyclerOptions<Contacto> options =
+                new FirebaseRecyclerOptions.Builder<Contacto>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Contactos").child(firebaseUser.getUid()), Contacto.class)
+                .build();
+        adapter = new ContactoAdapter(options,ContactosActivity.this);
+        recyclerView.setAdapter(adapter);
         search_view();
+
     }
 
-    //region Metodos para el SearchView
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+
+        adapter.startListening();
+    }
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+        adapter.stopListening();
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private void setUpRecyclerView(){
-        miRecycler = findViewById(R.id.recyclerViewSingle);
-        miRecycler.setLayoutManager(new LinearLayoutManager(this));
-        query = miFirestore.collection("Contactos");
-
-        FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
-                new  FirestoreRecyclerOptions.Builder<Contacto>().setQuery(query,Contacto.class).build();
-
-        miAdapter = new ContactoAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+        recyclerView = findViewById(R.id.recyclerViewSingle);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseRecyclerOptions<Contacto> options =
+                new FirebaseRecyclerOptions.Builder<Contacto>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Contactos").child(firebaseUser.getUid()).orderByChild("Nombre"), Contacto.class)
+                        .build();
+        miAdapter = new ContactoAdapter(options,ContactosActivity.this);
         miAdapter.notifyDataSetChanged();
-        miRecycler.setAdapter(miAdapter);
+        recyclerView.setAdapter(miAdapter);
     }
     private void search_view(){
         search_View.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -80,32 +102,16 @@ public class ContactosActivity extends AppCompatActivity {
             }
         });
     }
-    public void textSearch(String s){
-        FirestoreRecyclerOptions<Contacto> firestoreRecyclerOptions =
-                new FirestoreRecyclerOptions.Builder<Contacto>()
-                .setQuery(query.orderBy("Nombre")
-                        .startAt(s).endAt(s+"~"),Contacto.class).build();
-
-        miAdapter = new ContactoAdapter(firestoreRecyclerOptions,this,getSupportFragmentManager());
+    public void textSearch(String str) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseRecyclerOptions<Contacto> options =
+                new FirebaseRecyclerOptions.Builder<Contacto>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Contactos").child(firebaseUser.getUid()).orderByChild("Nombre").startAt(str).endAt(str + "~"), Contacto.class)
+                        .build();
+        miAdapter = new ContactoAdapter(options,ContactosActivity.this);
         miAdapter.startListening();
-        miRecycler.setAdapter(miAdapter);
-    }
-    //endregion
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        miAdapter.startListening();
+        recyclerView.setAdapter(miAdapter);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        miAdapter.stopListening();
-    }
 
-    public void irInicio(View view){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-    }
 }
