@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.nfc.*;
 import android.util.Log;
@@ -35,6 +36,8 @@ public class GrabarNFCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_nfc);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.BTO_HOME_turquesa)));
+
         String numero_user = getIntent().getStringExtra("tipo_escr");
         Toast.makeText(this, numero_user, Toast.LENGTH_SHORT).show();
         btnEmpezar = (Button) findViewById(R.id.bto_aniadirLlamada);

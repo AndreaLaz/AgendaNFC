@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -38,6 +39,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graba_whattsap);
+
         bto_grabaWhattsapp = findViewById(R.id.buttonGrabarWhattsap);
         instrucciones = findViewById(R.id.textInstruccionesw);
         instrucciones.setText(Html.fromHtml("<font color='#040504'>Cuando tenga lista la pagina</font> Whattsap <font color='#040504'> de la agenda presione en </font> GRABAR CONTACTO"));

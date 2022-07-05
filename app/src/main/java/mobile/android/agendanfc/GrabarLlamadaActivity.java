@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -36,6 +37,7 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_llamada);
+
         grabaLlamada = findViewById(R.id.buttonGrabarLlamada);
         instrucciones = findViewById(R.id.textInstrucciones);
         instrucciones.setText(Html.fromHtml("<font color='#040504'>Cuando tenga lista la pagina</font> TELÉFONO <font color='#040504'> de la agenda presione en </font> GRABAR CONTACTO"));

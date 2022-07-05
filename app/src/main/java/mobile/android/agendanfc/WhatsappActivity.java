@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -31,6 +32,7 @@ public class WhatsappActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whatsapp);
+
         Intent intent = new Intent(this,getClass());
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         // btn = findViewBva a quedar inutilizado popr pruebas: yId(R.id.btn);
