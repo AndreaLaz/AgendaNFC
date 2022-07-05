@@ -257,7 +257,7 @@ public class FormularioActivity extends AppCompatActivity {
 
    public void DialogoContacto (String actOrNuv,String numeroMensajeria){
        AlertDialog.Builder builder = new AlertDialog.Builder(FormularioActivity.this);
-       builder.setTitle("Contacto"+actOrNuv+"!!!!");
+       builder.setTitle("Contacto "+actOrNuv+"!!!!");
        builder.setMessage(" Procederemos a escribirlo en nuestra agenda !");
 
        builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {

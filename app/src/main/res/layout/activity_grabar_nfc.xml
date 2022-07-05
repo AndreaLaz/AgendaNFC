@@ -27,18 +27,21 @@
             android:id="@+id/generate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:text="Go" />
 
         <Button
             android:id="@+id/values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:text="Get Values" />
 
         <Button
             android:id="@+id/bto_aniadirLlamada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:hapticFeedbackEnabled="false"
             android:text="@string/BTO_escrTag"
             android:textColor="#FFFFFF"

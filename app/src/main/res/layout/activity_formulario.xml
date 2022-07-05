@@ -140,6 +140,7 @@
                         android:id="@+id/saveButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:backgroundTint="@color/BTO_HOME_turquesa"
                         android:foregroundGravity="center"
                         android:gravity="center"
                         android:text="@string/btn_guardarFormu" />

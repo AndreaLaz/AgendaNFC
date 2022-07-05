@@ -58,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/BTO_HOME_turquesa"
                     android:onClick="irInicioSesion"
                     android:text="@string/btn_iniciar_pantalla" />
 
@@ -74,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/BTO_HOME_turquesa"
                     android:onClick="irRegistro"
                     android:text="@string/btn_registrar_pantalla" />
             </TableRow>

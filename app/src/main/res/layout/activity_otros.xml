@@ -55,6 +55,7 @@
                             android:id="@+id/btn_app"
                             android:layout_width="128dp"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="Grabar" />
 
                         <Space
@@ -66,6 +67,7 @@
                             android:id="@+id/btn_app_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="Información" />
                     </LinearLayout>
 
@@ -106,6 +108,7 @@
                             android:id="@+id/btn_Link"
                             android:layout_width="128dp"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="GRABAR" />
 
                         <Space
@@ -117,6 +120,7 @@
                             android:id="@+id/btn_Link_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="INFORMACIÓN" />
                     </LinearLayout>
 
@@ -164,6 +168,7 @@
                             android:id="@+id/btn_Mensaje_Auto"
                             android:layout_width="128dp"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="GRABAR" />
 
                         <Space
@@ -175,6 +180,7 @@
                             android:id="@+id/btn_Mensaje_Auto_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="INFORMACIÓN" />
                     </LinearLayout>
 
@@ -215,6 +221,7 @@
                             android:id="@+id/btn_Contacto_Card"
                             android:layout_width="128dp"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="GRABAR" />
 
                         <Space
@@ -226,6 +233,7 @@
                             android:id="@+id/btn_Contacto_Card_INFO"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="@color/BTO_HOME_turquesa"
                             android:text="INFORMACÍON" />
                     </LinearLayout>
 

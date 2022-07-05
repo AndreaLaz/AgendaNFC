@@ -28,6 +28,7 @@
             android:layout_height="101dp"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:gravity="center"
             android:onClick="irFormulario"
             android:text="@string/btn_aniadirContacto" />
@@ -38,6 +39,7 @@
             android:layout_height="101dp"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:onClick="irContactos"
             android:text="@string/btn_misContacto" />
 
@@ -48,6 +50,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
 
+            android:backgroundTint="@color/BTO_HOME_turquesa"
             android:onClick="irGrabarMenj"
             android:text="@string/btn_otrasFuncionalidades" />
     </LinearLayout>

@@ -25,12 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="#087E8B"
-            android:padding="20dp"
+            android:background="@color/BTO_HOME_turquesa"
             android:gravity="center"
+            android:padding="20dp"
             android:text="Nombre"
-            android:textSize="22sp"
             android:textColor="#2F2D2E"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -132,7 +132,7 @@
                 android:id="@+id/bto_editar"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginRight="40dp"
                 app:srcCompat="@drawable/edit_icon"
                 app:tint="#1ED125" />
