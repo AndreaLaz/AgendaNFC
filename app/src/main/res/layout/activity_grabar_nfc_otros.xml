@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GrabarNFC_OtrosActivity">
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="326dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+        <Button
+            android:id="@+id/buttonGrabar"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/BTO_VERDECLARO"
+            android:text="@string/grabarllamada"
+            android:textAlignment="center" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/homeid"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/black_home"
+                android:backgroundTint="@color/BTO_HOME_turquesa"
+                android:onClick="irMenuPrincipal"
+                android:text="@string/nada" />
+
+            <TextView
+                android:id="@+id/textInstruccionesw"
+                android:layout_width="339dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Instrucciones de uso:"
+                android:textAlignment="center"
+                android:textColor="@color/BTO_VERDECLARO"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imagenWhattsap"
+            android:layout_width="match_parent"
+            android:layout_height="479dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icono__graba_whatsap" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

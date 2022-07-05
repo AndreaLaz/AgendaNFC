@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.nfc.*;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -32,42 +35,101 @@ public class GrabarNFCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_nfc);
+        String numero_user = getIntent().getStringExtra("tipo_escr");
+        Toast.makeText(this, numero_user, Toast.LENGTH_SHORT).show();
+        btnEmpezar = (Button) findViewById(R.id.bto_aniadirLlamada);
 
-            radioMessageTypeGroup = (RadioGroup) findViewById(R.id.radioTypeMessage);
-            btnEmpezar = (Button) findViewById(R.id.bto_aniadirLlamada);
-        TextView editaelmensaje = (TextView) findViewById(R.id.editaelmensaje);
+        final LinearLayout container = (LinearLayout) findViewById(R.id.container);
+        int numberOfControlsToGenerate = 0;
 
-        btnEmpezar.setOnClickListener(new OnClickListener() {
+        try {
+            numberOfControlsToGenerate = Integer.parseInt(numero_user);
+        } catch (NumberFormatException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
 
-                @Override
-                public void onClick(View v) {
-                    // get selected radio button from radioGroup
-                    int selectedId = radioMessageTypeGroup.getCheckedRadioButtonId();
-                    String contenidotxt = editaelmensaje.getText().toString();
-                    // find the radiobutton by returned id
-                    radioMessageTypeButton = (RadioButton) findViewById(selectedId);
-                    switch (radioMessageTypeGroup.getCheckedRadioButtonId()) {
-                        case R.id.radioTypeMessage:
-                            mNfcMessage = mNFCManager.grabaWhatssapp(contenidotxt);
-                            break;
-                        case R.id.radioUri:
-                            mNfcMessage = mNFCManager.createUriMessage(contenidotxt, "https://");
-                            break;
-                        case R.id.radioPhone:
-                            mNfcMessage = mNFCManager.grabaLlamada(contenidotxt);
-                            break;
-                        case R.id.radioLocation:
-                            //mNfcMessage = mNFCManager.createGeoMessage(contenidotxt);
-                            break;
-                    }if (mNfcMessage != null) {
-                        ProgressDialog mDialog = new ProgressDialog(GrabarNFCActivity.this);
-                        mDialog.setMessage("acerca la etiqueta NFC, por favor");
-                        mDialog.show();
+        if (numberOfControlsToGenerate > 0) {
+
+            if (container.getChildCount() > 0) {
+                container.removeAllViews();
+            }
+            switch (numberOfControlsToGenerate) {
+                case 1:
+                    for (int counter = 0; counter < numberOfControlsToGenerate; counter++) {
+                        int id_textVIew;
+                        id_textVIew = addEditText(container,"link");
+                        TextView contenido_id = (TextView) findViewById(id_textVIew);
+                        String name = contenido_id.getText().toString();
+                        mNfcMessage = mNFCManager.createUriMessage(name, "https://");
                     }
+                    break;
+                case 2:
+                    final String numero;
+                    final String[] mensaje = {""};
+                    EditText contenido_mensaje;
+                    TextView contenido_numero;
+                    int id_textVIew;
+                    id_textVIew = addEditText(container,"mensaje");
+                    contenido_mensaje = (EditText) findViewById(id_textVIew);
+                    numero = contenido_mensaje.getText().toString();
+                    Toast.makeText(this, numero, Toast.LENGTH_SHORT).show();
+                    contenido_numero = (TextView) findViewById(id_textVIew);
+                    //numero = contenido_numero.getText().toString();
+                    btnEmpezar.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                      //      mensaje[0] = contenido_mensaje.getText().toString();
+                        //    numero = contenido_numero.getText().toString();
+                            ProgressDialog mDialog = new ProgressDialog(GrabarNFCActivity.this);
+                            mDialog.setMessage(numero);
+                            mDialog.show();
+//                            mNfcMessage = mNFCManager.createWhattsapMensaje(numero[0], mensaje[0]);
+                            if (mNfcMessage != null) {
+                                mDialog.setMessage("acerca la etiqueta NFC, por favor");
+                                mDialog.show();
+                            }
 
-                }
+                        }
+                    });
+                    break;
+                case 3:
+                    String Nombre= "";
+                    String Numero= "";
+                    String NumeroWhattsap= "";
+                    for (int counter = 0; counter < numberOfControlsToGenerate; counter++) {
 
-            });
+                        if(counter == 0){
+                            id_textVIew = addEditText(container,"nombre");
+                            TextView contenido_id = (TextView) findViewById(id_textVIew);
+                            Nombre = contenido_id.getText().toString();
+                        }
+                        if(counter == 1){
+                            id_textVIew = addEditText(container,"numero");
+                            TextView contenido_id = (TextView) findViewById(id_textVIew);
+                            Numero = contenido_id.getText().toString();
+                        }
+
+                    }
+                    NumeroWhattsap = Numero;
+                    mNfcMessage = mNFCManager.grabaVcard(Nombre,Numero);
+                    break;
+            }
+
+        }
+
+
+    }
+    public static final String TAG = MainActivity.class.getSimpleName();
+
+
+    private Integer addEditText(LinearLayout container, String texto) {
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        EditText editTextToAdd = new EditText(this);
+        editTextToAdd.setLayoutParams(params);
+        editTextToAdd.setHint(texto);
+        container.addView(editTextToAdd);
+        int ID;
+        return ID = (editTextToAdd.getId());
     }
 
     @Override
@@ -77,7 +139,7 @@ public class GrabarNFCActivity extends AppCompatActivity {
             mNFCManager.verificarNFC(nfcAdpt);
             Intent nfcIntent = new Intent(this, getClass());
             nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,nfcIntent,PendingIntent.FLAG_MUTABLE);
             IntentFilter[] intentFiltersArray = new IntentFilter[]{};
             String[][] techList = new String[][]{{android.nfc.tech.Ndef.class.getName()}, {android.nfc.tech.NdefFormatable.class.getName()}};
             nfcAdpt = NfcAdapter.getDefaultAdapter(this);

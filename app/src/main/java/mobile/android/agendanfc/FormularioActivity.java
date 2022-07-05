@@ -34,7 +34,7 @@ public class FormularioActivity extends AppCompatActivity {
 
 
     private CountryCodePicker ccp;
-    private TextView textnumeroTelefono;//textViewNumTelefono
+    private TextView textnumeroTelefono, primer_dato;//textViewNumTelefono
     Button guardar,sendCcp;
 
     public String nombreContactoF;
@@ -48,6 +48,7 @@ public class FormularioActivity extends AppCompatActivity {
         String nombre_user = getIntent().getStringExtra("nombre_user");
         String numero_user = getIntent().getStringExtra("telefono_user");
 
+        String tipo_form = getIntent().getStringExtra("tipo_form");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -55,60 +56,142 @@ public class FormularioActivity extends AppCompatActivity {
         telefono = findViewById(R.id.editTextTelefono);
         mensajeria = findViewById(R.id.editTextTelefono);
         guardar = (Button) findViewById(R.id.saveButton);
+
+        primer_dato = findViewById(R.id.textViewNombreContacto);
         inicializarVistaCCP();
 
+        switch(tipo_form)
+        {
+            // declaración case
+            // crear nuevo contacto
+            case "1" :
+                if(id_contacto==null || id_contacto==""){
+                    this.setTitle("Añadir Contacto");
+                    guardar.setText("GUARDAR");
+                    guardar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int tamanioNumero = 0;
 
-        if(id_contacto==null || id_contacto==""){
-            this.setTitle("Añadir Contacto");
-            guardar.setText("GUARDAR");
-            guardar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int tamanioNumero = 0;
+                            String nombreContacto = nombre.getText().toString().trim();
+                            String numeroTelefono = telefono.getText().toString().trim();
+                            String numeroMensajeria = telefono.getText().toString().trim();
+                            String codigo = "+"+ccp.getSelectedCountryCode();
 
-                    String nombreContacto = nombre.getText().toString().trim();
-                    String numeroTelefono = telefono.getText().toString().trim();
-                    String numeroMensajeria = telefono.getText().toString().trim();
-                    String codigo = "+"+ccp.getSelectedCountryCode();
+                            tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
 
-                    tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+                            if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                                Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                            }else if(tamanioNumero<9){
+                                Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                            }else
+                                guardarContacto(nombreContacto,codigo+numeroTelefono,codigo+numeroMensajeria);
 
-                    if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
-                        Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
-                    }else if(tamanioNumero<9){
-                        Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
-                    }else
-                        guardarContacto(nombreContacto,codigo+numeroTelefono,codigo+numeroMensajeria);
-
+                        }
+                    });
                 }
-            });
-        }else {
-            guardar.setText("ACTUALIZAR");
-            //getContacto(id);
-            actalizarVista(nombre_user, numero_user);
+                // Declaraciones
+                break; // break es opcional
+            //crear mensaje auto
+            case ("2") :
+                // Declaraciones
+                if(id_contacto==null || id_contacto==""){
+                    this.setTitle("CREAR WHATSAPP AUTOMÁTICO");
+                    primer_dato.setText("Mensaje");
+                    guardar.setText("GRABAR");
+                    guardar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int tamanioNumero = 0;
 
-            guardar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int tamanioNumero = 0;
+                            String nombreContacto = nombre.getText().toString().trim();
+                            String numeroTelefono = telefono.getText().toString().trim();
+                            String numeroMensajeria = telefono.getText().toString().trim();
+                            String codigo = "+"+ccp.getSelectedCountryCode();
 
-                    nombreContactoF = nombre.getText().toString().trim();
-                    String numeroTelefono = telefono.getText().toString().trim();
-                    String numeroMensajeria = telefono.getText().toString().trim();
-                    String codigo = "+"+ccp.getSelectedCountryCode();
-                    tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+                            tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
 
+                            if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                                Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                            }else if(tamanioNumero<9){
+                                Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                            }else
+                                irGrabarNFCOtros(nombreContacto,codigo+numeroTelefono,tipo_form);
 
-                    if(nombreContactoF.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
-                        Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
-                    }else if(tamanioNumero<9){
-                        Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
-                    }else
-                        actualizarContacto(nombreContactoF,codigo+numeroTelefono,codigo+numeroMensajeria,id_contacto);
+                        }
+                    });
                 }
-            });
+                // Declaraciones
+                break;
+
+            // crear vCard
+            case "3":
+                if(id_contacto==null || id_contacto==""){
+                    this.setTitle("CREAR TARJETA CONTACTO");
+                    guardar.setText("GRABAR");
+                    guardar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int tamanioNumero = 0;
+
+                            String nombreContacto = nombre.getText().toString().trim();
+                            String numeroTelefono = telefono.getText().toString().trim();
+                            String numeroMensajeria = telefono.getText().toString().trim();
+                            String codigo = "+"+ccp.getSelectedCountryCode();
+
+                            tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+
+                            if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                                Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                            }else if(tamanioNumero<9){
+                                Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                            }else
+                                irGrabarNFCOtros(nombreContacto,codigo+numeroTelefono,tipo_form);
+
+                        }
+                    });
+                }
+                // Declaraciones
+                break;
+            default :
+            {
+                this.setTitle("Crear tajeta contacto");
+                guardar.setText("Grabar");
+                //getContacto(id);
+                actalizarVista(nombre_user, numero_user);
+
+                guardar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int tamanioNumero = 0;
+
+                        nombreContactoF = nombre.getText().toString().trim();
+                        String numeroTelefono = telefono.getText().toString().trim();
+                        String numeroMensajeria = telefono.getText().toString().trim();
+                        String codigo = "+"+ccp.getSelectedCountryCode();
+                        tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
+
+
+                        if(nombreContactoF.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                            Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
+                        }else if(tamanioNumero<9){
+                            Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
+                        }else
+                            actualizarContacto(nombreContactoF,codigo+numeroTelefono,codigo+numeroMensajeria,id_contacto);
+                    }
+                });
+            }
         }
     }//FINonCreate
+
+    private void irGrabarNFCOtros(String s, String s1, String tipo_form) {
+        Intent i = new Intent(this, GrabarNFC_OtrosActivity.class);
+        i.putExtra("nombre_user",s );
+        i.putExtra("telefono_user",s1 );
+        i.putExtra("tipo_form",tipo_form );
+
+        this.startActivity(i);
+    }
 
     private void actalizarVista(String nombre_user, String numero_user) {
         nombre.setText(nombre_user);

@@ -7,133 +7,60 @@
     tools:context=".GrabarNFCActivity">
 
 
-    <RadioGroup
-        android:id="@+id/radioTypeMessage"
-        android:layout_width="322dp"
-        android:layout_height="241dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/bto_aniadirLlamada"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Choosetagtype"
-        app:layout_constraintVertical_bias="0.0">
-
-        <RadioButton
-            android:id="@+id/radioUri"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:checked="true"
-            android:text="Type uri"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/radioPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:text="Type phone"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/radioSimpleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:text="Type simple text"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/radioLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:text="Type location"
-            android:textSize="22sp" />
-
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/tvOr"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="68dp"
-        android:background="#00BCD4"
-        android:backgroundTint="#00BCD4"
-        android:shadowColor="#3F51B5"
-        android:text="OTRO"
-        android:textColor="#455A64"
-        android:textSize="48sp"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintBottom_toTopOf="@+id/editaelmensaje"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
-    <EditText
-        android:id="@+id/editaelmensaje"
-        android:layout_width="357dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="369dp"
-        android:layout_weight="2"
-        android:autofillHints=""
-        android:hint="Edita mensaje"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/Choosetagtype"
-        app:layout_constraintStart_toEndOf="@+id/Choosetagtype"
-        app:layout_constraintTop_toBottomOf="@+id/tvOr"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/bto_aniadirLlamada"
-        android:layout_width="146dp"
-        android:layout_height="76dp"
-        android:layout_marginEnd="170dp"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/BTO_escrTag"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#009688"
-        android:textIsSelectable="false"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Choosetagtype"
-        android:layout_width="141dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="19dp"
-        android:text="elije tipo tag"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/radioTypeMessage"
-        app:layout_constraintTop_toBottomOf="@+id/editaelmensaje"
-        tools:ignore="MissingConstraints" />
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editaelmensaje">
+        android:padding="16dp"
+        tools:context="${packageName}.${activityClass}" >
+
+        <EditText
+            android:id="@+id/count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/generate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go" />
+
+        <Button
+            android:id="@+id/values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Values" />
+
+        <Button
+            android:id="@+id/bto_aniadirLlamada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hapticFeedbackEnabled="false"
+            android:text="@string/BTO_escrTag"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#009688"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="34dp" />
+        <TextView
+            android:id="@+id/output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

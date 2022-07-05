@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OtrosActivity">
+
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="0dp"
+        android:layout_height="589dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------------------------------"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/textView_App"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="App"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="30dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_app"
+                            android:layout_width="128dp"
+                            android:layout_height="wrap_content"
+                            android:text="Grabar" />
+
+                        <Space
+                            android:layout_width="73dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_app_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Información" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------------------------------"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/textView_Link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Link"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="30dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_Link"
+                            android:layout_width="128dp"
+                            android:layout_height="wrap_content"
+                            android:text="GRABAR" />
+
+                        <Space
+                            android:layout_width="73dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_Link_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INFORMACIÓN" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------------------------------"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView_mensaje_auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mensaje Automático"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="30dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_Mensaje_Auto"
+                            android:layout_width="128dp"
+                            android:layout_height="wrap_content"
+                            android:text="GRABAR" />
+
+                        <Space
+                            android:layout_width="73dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_Mensaje_Auto_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INFORMACIÓN" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="59dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-----------------------------------"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/textView_Contacto_Card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tarjeta visita"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="30dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_Contacto_Card"
+                            android:layout_width="128dp"
+                            android:layout_height="wrap_content"
+                            android:text="GRABAR" />
+
+                        <Space
+                            android:layout_width="73dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btn_Contacto_Card_INFO"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INFORMACÍON" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,11 +40,12 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     }
 
     public void irGrabarMenj(View view){
-        Intent i = new Intent(this,GrabaWhattsapActivity.class);
+        Intent i = new Intent(this,OtrosActivity.class);
         startActivity(i);
     }
     public void irFormulario(View view){
         Intent i = new Intent(this,FormularioActivity.class);
+        i.putExtra("tipo_form","1" );
         startActivity(i);
     }
     public void irContactos(View view){

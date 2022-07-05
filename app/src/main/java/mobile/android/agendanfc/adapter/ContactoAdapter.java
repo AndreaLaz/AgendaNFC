@@ -109,6 +109,7 @@ public class ContactoAdapter  extends FirebaseRecyclerAdapter<Contacto,ContactoA
                 i.putExtra("nombre_user", name);
                 i.putExtra("telefono_user", telefono);
                 i.putExtra("id_contacto", part1);
+                i.putExtra("tipo_form",part1);
                 activity.startActivity(i);
             }
         });
