@@ -29,8 +29,8 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private AlertDialog mDialogoAlerta;
 
-    String Ndef_type = "";
-    String Ndef_message;
+    String numero_user;
+    String nombre_user;
     String tipo_form;
     private Button btn_grabar;
 
@@ -38,29 +38,29 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grabar_nfc_otros);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.BTO_HOME_turquesa)));
 
 
-        String numero_user = getIntent().getStringExtra("telefono_user");
-        String nombre_user = getIntent().getStringExtra("nombre_user");
-        String tipo_form = getIntent().getStringExtra("tipo_form");
+         numero_user = getIntent().getStringExtra("telefono_user");
+         nombre_user = getIntent().getStringExtra("nombre_user");
+         tipo_form = getIntent().getStringExtra("tipo_form");
 
         instrucciones = findViewById(R.id.textInstruccionesw);
-        btn_grabar = (Button) findViewById(R.id.buttonGrabar);
+
         switch(tipo_form)
         {
             // declaración case
             // crear app
             case "1" :
-                    instrucciones.setText("Crear app");
-                    this.setTitle("ABRIR APP AUTOMATICO");
+                    instrucciones.setText("CREAR ABRIR APP AUTOMATICO");
                     btn_grabar = findViewById(R.id.buttonGrabar);
+                    btn_grabar.setText("GRABAR APPLICACIÓN ");
                     btn_grabar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             int tamanioNumero = 0;
 
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
+                            mNfcMessage = mNFCManager.grabaApp(numero_user);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'> ABRIR APP AUTOMATICO</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -78,15 +78,12 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                 break;
             //crear mensaje auto
             case ("2") :
-                instrucciones.setText("Crear Mensaje Automatico");
+                instrucciones.setText("CREAR MENSAJE DE WHATSAPP AUTOMATICO");
                 btn_grabar = findViewById(R.id.buttonGrabar);
-                // Declaraciones
-                    this.setTitle("CREAR WHATSAPP AUTOMÁTICO");
+                btn_grabar.setText("GRABAR MENSAJE AUTOMATICO ");
                     btn_grabar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int tamanioNumero = 0;
-
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
                             mNfcMessage = mNFCManager.createWhattsapMensaje(numero_user,nombre_user);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'>MENSAJE WHATSAPP</font> de sus contacto en la agenda"))
@@ -107,16 +104,15 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
 
             // crear vCard
             case "3":
+                instrucciones.setText("CREAR TARJETA DE CONTACTO");
                 btn_grabar = findViewById(R.id.buttonGrabar);
-                instrucciones.setText("Crear tajeta conatacto");
+                btn_grabar.setText("GRABAR TARJETA DE CONTACTO ");
                 // Declaraciones
-                if(numero_user==null || numero_user==""){
                     this.setTitle("CREAR TARJETA DE CONTACTO");
+                    btn_grabar = (Button) findViewById(R.id.buttonGrabar);
                     btn_grabar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int tamanioNumero = 0;
-
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
                             mNfcMessage = mNFCManager.grabaVcard(numero_user,nombre_user);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'> TARJETA DE CONTACTO</font> de sus contacto en la agenda"))
@@ -132,15 +128,13 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                             textView.setTextSize(25);
                         }
                     });
-                }
                 // Declaraciones
                 break;
             // Declaraciones
             default :
+                instrucciones.setText("CREAR LINK");
                 btn_grabar = findViewById(R.id.buttonGrabar);
-                instrucciones.setText("Crear link");
-                // Declaraciones
-                    this.setTitle("CREAR LINK");
+                btn_grabar.setText("GRABAR LINK");
                     btn_grabar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -178,9 +172,32 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
         } catch (NFCManager.NFCNotSupported nfcnsup) {
             Toast.makeText(this, "NFC no compatible", Toast.LENGTH_SHORT).show();
         } catch (NFCManager.NFCNotEnabled nfcnEn) {
-            Toast.makeText(this, "NFC no habilitado", Toast.LENGTH_SHORT).show();
+            AlertDialog mDialogoAlerta;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("NFC no habilitado\nPOR FAVOR HABILITELO\nPARA PODER ESCRIBIR Y DESPUÉS SIGA LAS INSTRUCCIONES DE GRABADO")
+                    .setCancelable(true)
+                    .setNegativeButton("VALE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            irGrabarOtros(numero_user,nombre_user,tipo_form);
+                            dialogInterface.cancel();
+                        }
+                    });
+            mDialogoAlerta = builder.show();
+            TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
+            textView.setTextSize(30);
         }
     }
+
+    private void irGrabarOtros(String numero_user, String nombre_user, String tipo_form) {
+        Intent i = new Intent(this, GrabarNFC_OtrosActivity.class);
+        i.putExtra("nombre_user",numero_user );
+        i.putExtra("telefono_user",nombre_user );
+        i.putExtra("tipo_form",tipo_form );
+
+        this.startActivity(i);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -193,31 +210,24 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
         mCurrentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (mNfcMessage != null) {
             mNFCManager.escribirTag(mCurrentTag, mNfcMessage);
-            AlertDialog.Builder escrito = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-            escrito.setMessage("Escritura Terminada")
-                    .setCancelable(false)
-                    .setPositiveButton("Okey", new DialogInterface.OnClickListener() {
+            builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
+            builder.setMessage("ESCRITURA TERMINADA \nDISFRUTE DE SU AGENDA FACÍL!")
+                    .setCancelable(true)
+                    .setPositiveButton("VALE", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             irMenuPrincipal(instrucciones);
+
                         }
                     });
-
-            escrito.show();
+            mDialogoAlerta= builder.show();
             TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
-            textView.setTextSize(25);
+            textView.setTextSize(30);
         }
     }
     public void irMenuPrincipal(View view){
         Intent i = new Intent(this,MenuPrincipalActivity.class);
         startActivity(i);
     }
-    public void irGrabarWhattsap(String id, String segundo_paso){
 
-        Intent i = new Intent(this, GrabaWhattsapActivity.class);
-        i.putExtra("numeroCont",id);
-        i.putExtra("NFC2",segundo_paso);
-        startActivity(i);
-
-    }
 }

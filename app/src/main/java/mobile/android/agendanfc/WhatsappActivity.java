@@ -37,11 +37,11 @@ public class WhatsappActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         // btn = findViewBva a quedar inutilizado popr pruebas: yId(R.id.btn);
         pendingIntent = PendingIntent.getActivity(this,0, intent,PendingIntent.FLAG_IMMUTABLE);
-        IntentFilter whattsapfilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        //IntentFilter whattsapfilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
 
-        whattsapfilter.addDataScheme("http");
-        whattsapfilter.addDataAuthority("google ://api.whatsapp.com/send?phone=",null);
-        readFilters = new IntentFilter[]{whattsapfilter};
+        //whattsapfilter.addDataScheme("http");
+        //whattsapfilter.addDataAuthority("google ://api.whatsapp.com/send?phone=",null);
+        //readFilters = new IntentFilter[]{whattsapfilter};
         processNFC(getIntent());
     }
 

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -71,13 +72,7 @@
                 <data
                     android:host="api.whatsapp.com"
                     android:scheme="http" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".GrabarNFCActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERES" />
+
             </intent-filter>
         </activity>
         <activity

@@ -37,7 +37,7 @@ public class OtrosActivity extends AppCompatActivity {
         btn_App.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                irApp("1");
+                irApp();
             }
         });
         btn_App_info.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +93,7 @@ public class OtrosActivity extends AppCompatActivity {
         Intent i = new Intent(this,LinkActivity.class);//de donde estamos a donde queremos ir
         startActivity(i);//para ir de una ventana a otra
     }
-    private void irApp(String s) {
+    private void irApp() {
         Intent i = new Intent(this,AppsActivity.class);//de donde estamos a donde queremos ir
         startActivity(i);//para ir de una ventana a otra
     }
@@ -105,11 +105,11 @@ public class OtrosActivity extends AppCompatActivity {
     }
 
     public void irInfo(String dato){
-        Intent i = new Intent(this,GrabarNFCActivity.class);//de donde estamos a donde queremos ir
+        Intent i = new Intent(this,FormularioActivity.class);//de donde estamos a donde queremos ir
         startActivity(i);//para ir de una ventana a otra
     }
     public void irGrabar(String dato){
-        Intent i = new Intent(this,GrabarNFCActivity.class);//de donde estamos a donde queremos ir
+        Intent i = new Intent(this,FormularioActivity.class);//de donde estamos a donde queremos ir
         i.putExtra("tipo_escr",dato );
         startActivity(i);//para ir de una ventana a otra
     }

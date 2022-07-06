@@ -22,7 +22,11 @@ public class NFCManager {
     public NFCManager(Context context) {
         mContext = context;
     }
-
+    public NdefMessage grabaApp(String app_data){
+        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[]{NdefRecord
+                .createApplicationRecord(app_data)});
+        return ndefMessage;
+    }
     public NdefRecord createVcardRecord(String name, String tel){
 
         String payloadStr = "BEGIN:VCARD" + "\n" +
@@ -47,7 +51,6 @@ public class NFCManager {
     }
     public NdefMessage grabaLlamada(String numero){
         NdefMessage mNfcMessage = createUriMessage(numero, "tel:");
-        //NdefRecord ndefRecord = android.nfc.NdefRecord.createApplicationRecord("");
         return mNfcMessage;
     }
     public NdefMessage grabaWhatssapp(String whatssapp){
@@ -64,12 +67,6 @@ public class NFCManager {
         NdefMessage msg = new NdefMessage(new NdefRecord[]{registro});
         return msg;
     }
-    public void elimminaNFC( ){
-
-    }
-    /*Creé una clase que es responsable de trabajar con NFC.
-    Llamé a esta clase NFCManager y le agregué todos los métodos que puedes ver en MainActivity.*/
-
     //Este es un método para verificar si NFC está disponible en un dispositivo.
     public void verificarNFC(NfcAdapter nfcAdpt) throws NFCNotSupported, NFCNotEnabled {
          nfcAdpt = NfcAdapter.getDefaultAdapter(mContext);//aqui no se me esta rallando
