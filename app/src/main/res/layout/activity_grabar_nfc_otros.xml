@@ -21,7 +21,7 @@
             android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/BTO_VERDECLARO"
+            android:backgroundTint="@color/BTO_otros"
             android:text="@string/grabarllamada"
             android:textAlignment="center" />
     </FrameLayout>
@@ -65,7 +65,7 @@
                 android:gravity="center"
                 android:text="Instrucciones de uso:"
                 android:textAlignment="center"
-                android:textColor="@color/BTO_VERDECLARO"
+                android:textColor="@color/BTO_otros"
                 android:textSize="25dp" />
         </LinearLayout>
 
@@ -74,7 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="479dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/icono__graba_whatsap" />
+            app:srcCompat="@drawable/imagenagenda" />
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

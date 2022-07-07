@@ -61,7 +61,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
 
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
                             mNfcMessage = mNFCManager.grabaApp(numero_user);
-                            builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'> ABRIR APP AUTOMATICO</font> de sus contacto en la agenda"))
+                            builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#FF0187'> ABRIR APP AUTOMATICO</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
                                         @Override
