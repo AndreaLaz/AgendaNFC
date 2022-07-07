@@ -51,7 +51,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(GrabaWhattsapActivity.this);
-                mNfcMessage = mNFCManager.grabaWhatssapp("+"+numeroCont);
+                mNfcMessage = mNFCManager.grabaWhatssapp(numeroCont);
                 builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#75D113'>Whattsap</font> de sus contacto en la agenda"))
                         .setCancelable(true)
                         .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -128,7 +128,6 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
                 textView.setTextSize(40);
 
         }
-        Toast.makeText(this, "Etiqueta Whattsap", Toast.LENGTH_SHORT).show();
 
     }
 

@@ -1,7 +1,11 @@
 package mobile.android.agendanfc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -22,7 +26,7 @@ import android.widget.Toast;
 import java.util.Arrays;
 
 
-public class WhatsappActivity extends AppCompatActivity {
+public class TratadoDeDatosActivity extends AppCompatActivity {
     Button btn;
     private PendingIntent pendingIntent;
     private IntentFilter[] readFilters;
@@ -37,11 +41,14 @@ public class WhatsappActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         // btn = findViewBva a quedar inutilizado popr pruebas: yId(R.id.btn);
         pendingIntent = PendingIntent.getActivity(this,0, intent,PendingIntent.FLAG_IMMUTABLE);
-        //IntentFilter whattsapfilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-
-        //whattsapfilter.addDataScheme("http");
+        IntentFilter whattsapfilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        whattsapfilter.addDataScheme("http");
+        IntentFilter telefonoFilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        whattsapfilter.addDataScheme("tel");
+        if(ContextCompat.checkSelfPermission(TratadoDeDatosActivity.this,Manifest.permission.CALL_PHONE)  != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(TratadoDeDatosActivity.this, new String[]{Manifest.permission.CALL_PHONE},100);
         //whattsapfilter.addDataAuthority("google ://api.whatsapp.com/send?phone=",null);
-        //readFilters = new IntentFilter[]{whattsapfilter};
+        readFilters = new IntentFilter[]{whattsapfilter,telefonoFilter};
         processNFC(getIntent());
     }
 
@@ -80,12 +87,21 @@ public class WhatsappActivity extends AppCompatActivity {
                                 String whattsap= new String(record.getPayload());
                                 byte[] payload = ndefMessage.getRecords()[0].getPayload();
                                 // Read First Byte and then trim off the right length
-                                byte[] textArray = Arrays.copyOfRange(payload, 1, payload.length);
+                                byte[] textArray = Arrays.copyOfRange(payload,1 , payload.length);
                                 // Convert to Text
                                 String text = new String(textArray);
-                                intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("http://"+text));
-                                startActivity(intent);
+                                String type = text.substring(0,1);
+                                String type_phone = "+";
+                                Toast.makeText(getApplicationContext(),"--"+type+"---",Toast.LENGTH_LONG).show();
+                                if (type.equals(type_phone)) {
+                                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                    callIntent.setData(Uri.parse("tel:"+text));//change the number
+                                    startActivity(callIntent);
+                                }else {
+                                    intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("http://"+text));
+                                    startActivity(intent);
+                                }
                             }
                     }
                 }

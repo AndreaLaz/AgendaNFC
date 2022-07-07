@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -60,7 +61,7 @@
             android:name=".AniadirContActivity"
             android:exported="false" />
         <activity
-            android:name=".WhatsappActivity"
+            android:name=".TratadoDeDatosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -70,7 +71,8 @@
                 <action android:name="android.nfc.action.NDEF_DISCOVERES" />
 
                 <data
-                    android:host="api.whatsapp.com"
+                    android:scheme="tel"/>
+                <data
                     android:scheme="http" />
 
             </intent-filter>
@@ -97,9 +99,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data
-                    android:host="patata.com"
-                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>

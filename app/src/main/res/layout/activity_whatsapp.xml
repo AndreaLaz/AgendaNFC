@@ -4,21 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WhatsappActivity">
+    tools:context=".TratadoDeDatosActivity">
 
-    <Button
-        android:id="@+id/btn"
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="340dp"
-        android:backgroundTint="@color/BTO_VERDECLARO"
-        android:text="Whatsapp"
-        android:textSize="18sp"
+        android:layout_marginTop="316dp"
+        android:text="Procesando petición..."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </Button>
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
