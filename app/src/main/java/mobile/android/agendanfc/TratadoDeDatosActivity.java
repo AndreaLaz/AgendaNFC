@@ -41,14 +41,6 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         // btn = findViewBva a quedar inutilizado popr pruebas: yId(R.id.btn);
         pendingIntent = PendingIntent.getActivity(this,0, intent,PendingIntent.FLAG_IMMUTABLE);
-        IntentFilter whattsapfilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-        whattsapfilter.addDataScheme("http");
-        IntentFilter telefonoFilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-        whattsapfilter.addDataScheme("tel");
-        if(ContextCompat.checkSelfPermission(TratadoDeDatosActivity.this,Manifest.permission.CALL_PHONE)  != PackageManager.PERMISSION_GRANTED)
-            ActivityCompat.requestPermissions(TratadoDeDatosActivity.this, new String[]{Manifest.permission.CALL_PHONE},100);
-        //whattsapfilter.addDataAuthority("google ://api.whatsapp.com/send?phone=",null);
-        readFilters = new IntentFilter[]{whattsapfilter,telefonoFilter};
         processNFC(getIntent());
     }
 
@@ -92,7 +84,6 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
                                 String text = new String(textArray);
                                 String type = text.substring(0,1);
                                 String type_phone = "+";
-                                Toast.makeText(getApplicationContext(),"--"+type+"---",Toast.LENGTH_LONG).show();
                                 if (type.equals(type_phone)) {
                                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                                     callIntent.setData(Uri.parse("tel:"+text));//change the number
