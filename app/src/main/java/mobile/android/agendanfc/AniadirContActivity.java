@@ -55,7 +55,6 @@ public class AniadirContActivity extends AppCompatActivity {
         });
     }
     public void irGrabarWhattsap(String id){
-
         Intent i = new Intent(this, GrabaWhattsapActivity.class);
         i.putExtra("numeroCont",id);
         startActivity(i);

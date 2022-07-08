@@ -158,8 +158,8 @@ public class FormularioActivity extends AppCompatActivity {
                 break;
             default :
             {
-                this.setTitle("Crear tajeta contacto");
-                guardar.setText("Grabar");
+                this.setTitle("Editar Contacto");
+                guardar.setText("Actualizar");
                 //getContacto(id);
                 actalizarVista(nombre_user, numero_user);
 
@@ -271,7 +271,7 @@ public class FormularioActivity extends AppCompatActivity {
            }
        });
 
-       builder.setNegativeButton("Mas Tarde", new DialogInterface.OnClickListener() {
+       builder.setNegativeButton("Más Tarde", new DialogInterface.OnClickListener() {
            @Override
            public void onClick(DialogInterface dialogInterface, int i) {
                Toast.makeText(FormularioActivity.this,"No olvides grabar la agenda más tarde",Toast.LENGTH_SHORT).show();
