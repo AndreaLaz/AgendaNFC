@@ -27,7 +27,6 @@ import java.util.Arrays;
 
 
 public class TratadoDeDatosActivity extends AppCompatActivity {
-    Button btn;
     private PendingIntent pendingIntent;
     private IntentFilter[] readFilters;
 
@@ -39,7 +38,7 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,getClass());
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        // btn = findViewBva a quedar inutilizado popr pruebas: yId(R.id.btn);
+
         pendingIntent = PendingIntent.getActivity(this,0, intent,PendingIntent.FLAG_IMMUTABLE);
         processNFC(getIntent());
     }
@@ -78,9 +77,8 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
                             if (Arrays.equals(record.getType(),NdefRecord.RTD_URI)){
                                 String whattsap= new String(record.getPayload());
                                 byte[] payload = ndefMessage.getRecords()[0].getPayload();
-                                // Read First Byte and then trim off the right length
                                 byte[] textArray = Arrays.copyOfRange(payload,1 , payload.length);
-                                // Convert to Text
+                                // convertir a texto
                                 String text = new String(textArray);
                                 String type = text.substring(0,1);
                                 String type_phone = "+";

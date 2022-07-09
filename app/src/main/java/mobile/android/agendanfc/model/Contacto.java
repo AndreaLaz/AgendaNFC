@@ -8,8 +8,7 @@ public class Contacto {
     public Contacto(String AppMensajeria, String Nombre, String Telefono) {
         this.AppMensajeria = AppMensajeria;
         this.Nombre = Nombre;
-        this.Telefono = Telefono
-    ;
+        this.Telefono = Telefono;
     }
 
     public String getAppMensajeria() {
