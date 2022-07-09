@@ -44,4 +44,8 @@ public class LinkActivity extends AppCompatActivity {
 
         this.startActivity(i);
     }
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(i);
+    }
 }

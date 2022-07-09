@@ -74,10 +74,9 @@ public class OtrosActivity extends AppCompatActivity {
         i.putExtra("tipo_form",s );
         startActivity(i);
     }
-    public void irGrabar(String dato){
-        Intent i = new Intent(this,FormularioActivity.class);//de donde estamos a donde queremos ir
-        i.putExtra("tipo_escr",dato );
-        startActivity(i);//para ir de una ventana a otra
+    public void irMenuPrincipal(View view){
+        Intent i = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(i);
     }
 
 }

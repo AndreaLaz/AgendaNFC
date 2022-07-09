@@ -136,7 +136,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="match_parent"
                 android:gravity="center">
 
                 <LinearLayout
@@ -171,7 +171,35 @@
                 </LinearLayout>
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:gravity="center">
+
+                <Space
+                    android:layout_height="50dp"
+                    android:scrollbarSize="30dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/menupri"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:contentDescription="@string/nada"
+                    android:onClick="irMenuPrincipal"
+                    app:srcCompat="@drawable/black_home2"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </TableRow>
+
         </TableLayout>
 
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
