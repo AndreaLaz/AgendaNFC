@@ -29,12 +29,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_iniciar_sesion);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.BTO_HOME_turquesa)));
 
-
         mAuth = FirebaseAuth.getInstance();
         correo = findViewById(R.id.correoIS);
         contrasenia = findViewById(R.id.contraseniaIS);
-
-
     }
     public void irInicio(View view){
         Intent i = new Intent(this,MainActivity.class);
@@ -44,30 +41,10 @@ public class IniciarSesionActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
     }
     public void iniciarSesion (View view){
 
-        /*mAuth.createUserWithEmailAndPassword(correo.getText().toString().trim(), contrasenia.getText().toString().trim())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Usuario iniciado con exito!!.",Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                            Intent i = new Intent(getApplicationContext(),MenuPrincipalActivity.class);
-                            startActivity(i);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            //Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Error , vuelva a intentarlo o \n registrese en caso de no tener cuenta.",Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
-                    }
-                });*/
         mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contrasenia.getText().toString().trim())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -82,17 +59,11 @@ public class IniciarSesionActivity extends AppCompatActivity {
                             startActivity(i);
                             //updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(IniciarSesionActivity.this, "Error , vuelva a intentarlo o \n registrese en caso de no tener cuenta.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
                     }
                 });
     }
-    /*public void irMenuPrincipal(View view){
-        Intent i = new Intent(this,GrabarNFCActivity.class);
-        startActivity(i);
-    }*/
 }

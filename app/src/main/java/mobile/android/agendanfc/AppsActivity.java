@@ -39,10 +39,6 @@ public class AppsActivity extends ListActivity {
     private List<ApplicationInfo> applist = null;
     private AplicacionAdapter listadaptor = null;
 
-    EditText mcampo;
-    ListView mLista;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +46,9 @@ public class AppsActivity extends ListActivity {
 
         packageManager = getPackageManager();
 
-
-
         new LoadApplications().execute();
 
-
     }
-
 
     private void displayAboutDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);

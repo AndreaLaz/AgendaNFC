@@ -160,7 +160,7 @@ public class FormularioActivity extends AppCompatActivity {
             {
                 this.setTitle("Editar Contacto");
                 guardar.setText("Actualizar");
-                //getContacto(id);
+
                 actalizarVista(nombre_user, numero_user);
 
                 guardar.setOnClickListener(new View.OnClickListener() {

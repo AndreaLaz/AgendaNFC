@@ -19,8 +19,6 @@ public class AniadirContActivity extends AppCompatActivity {
     private FirebaseFirestore bd;
     Button masLlamada,masMensajeria;
 
-    String numT,numM;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
