@@ -47,15 +47,14 @@
             android:gravity="top"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/homeid"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/black_home"
-                android:backgroundTint="@color/BTO_HOME_turquesa"
                 android:onClick="irMenuPrincipal"
-                android:text="@string/nada" />
+                app:srcCompat="@drawable/black_home2" />
 
             <TextView
                 android:id="@+id/textInstruccionesw"

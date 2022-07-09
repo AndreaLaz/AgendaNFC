@@ -48,16 +48,14 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/homeid"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/black_home"
-                android:backgroundTint="@color/BTO_HOME_turquesa"
-                android:contentDescription="@string/nada"
                 android:onClick="irMenuPrincipal"
-                android:text="." />
+                app:srcCompat="@drawable/black_home2" />
 
             <TextView
                 android:id="@+id/textInstrucciones"
