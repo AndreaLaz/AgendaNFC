@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.ColorDrawable;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -29,8 +28,8 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private AlertDialog mDialogoAlerta;
 
-    String numero_user;
-    String nombre_user;
+    String dato_1;
+    String dato_2;
     String tipo_form;
     private Button btn_grabar;
 
@@ -40,8 +39,8 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grabar_nfc_otros);
 
 
-         numero_user = getIntent().getStringExtra("telefono_user");
-         nombre_user = getIntent().getStringExtra("nombre_user");
+         dato_1 = getIntent().getStringExtra("dato_graba_1");
+         dato_2 = getIntent().getStringExtra("dato_graba_2");
          tipo_form = getIntent().getStringExtra("tipo_form");
 
         instrucciones = findViewById(R.id.textInstruccionesw);
@@ -60,7 +59,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                             int tamanioNumero = 0;
 
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-                            mNfcMessage = mNFCManager.grabaApp(numero_user);
+                            mNfcMessage = mNFCManager.grabaApp(dato_1);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#FF0187'> ABRIR APP AUTOMATICO</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -85,7 +84,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-                            mNfcMessage = mNFCManager.createWhattsapMensaje(numero_user,nombre_user);
+                            mNfcMessage = mNFCManager.createWhattsapMensaje(dato_1,dato_2);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'>MENSAJE WHATSAPP</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -114,7 +113,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-                            mNfcMessage = mNFCManager.grabaVcard(numero_user,nombre_user);
+                            mNfcMessage = mNFCManager.grabaVcard(dato_2,dato_1);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'> TARJETA DE CONTACTO</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -139,7 +138,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-                            mNfcMessage = mNFCManager.grabaLink(numero_user);
+                            mNfcMessage = mNFCManager.grabaLink(dato_1);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'>CREAR LINK</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -179,7 +178,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                     .setNegativeButton("VALE", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            irGrabarOtros(numero_user,nombre_user,tipo_form);
+                            irGrabarOtros(dato_1,dato_2,tipo_form);
                             dialogInterface.cancel();
                         }
                     });

@@ -38,9 +38,8 @@ public class LinkActivity extends AppCompatActivity {
 
     private void irGrabarNFC_Otros(String link_mssg) {
         Intent i = new Intent(this, GrabarNFC_OtrosActivity.class);
-        i.putExtra("nombre_user","" );
-        i.putExtra("telefono_user",link_mssg );
-        i.putExtra("tipo_form","link" );
+        i.putExtra("dato_graba_1",link_mssg );
+        i.putExtra("tipo_form","4" );
 
         this.startActivity(i);
     }

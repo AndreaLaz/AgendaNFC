@@ -93,7 +93,7 @@ public class GrabaWhattsapActivity extends AppCompatActivity {
                     });
             mDialogoAlerta = builder.show();
             TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
-            textView.setTextSize(30);        
+            textView.setTextSize(30);
         }
     }
     @Override

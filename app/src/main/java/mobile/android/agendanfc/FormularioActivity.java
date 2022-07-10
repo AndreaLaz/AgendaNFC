@@ -189,8 +189,8 @@ public class FormularioActivity extends AppCompatActivity {
 
     private void irGrabarNFCOtros(String s, String s1, String tipo_form) {
         Intent i = new Intent(this, GrabarNFC_OtrosActivity.class);
-        i.putExtra("nombre_user",s );
-        i.putExtra("telefono_user",s1 );
+        i.putExtra("dato_graba_2",s );
+        i.putExtra("dato_graba_1",s1 );
         i.putExtra("tipo_form",tipo_form );
 
         this.startActivity(i);
