@@ -79,8 +79,20 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         } catch (NFCManager.NFCNotSupported nfcnsup) {
             Toast.makeText(this, "NFC no compatible", Toast.LENGTH_SHORT).show();
         } catch (NFCManager.NFCNotEnabled nfcnEn) {
-            Toast.makeText(this, "NFC no habilitado", Toast.LENGTH_SHORT).show();
-        }
+            AlertDialog mDialogoAlerta;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("NFC no habilitado\nPOR FAVOR HABILITELO\nPARA PODER ESCRIBIR Y DESPUÉS SIGA LAS INSTRUCCIONES DE GRABADO")
+                    .setCancelable(true)
+                    .setNegativeButton("VALE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            irGrabarLlamada(numeroCont);
+                            dialogInterface.cancel();
+                        }
+                    });
+            mDialogoAlerta = builder.show();
+            TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
+            textView.setTextSize(30);        }
     }
     @Override
     protected void onPause() {
@@ -128,7 +140,7 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
             escrito.setTitle(Html.fromHtml("<big>¡Contacto Añadido a la agenda correctamente!</big>"));
             mDialogoAlerta=escrito.show();
             TextView textView = (TextView) mDialogoAlerta.findViewById(android.R.id.message);
-            textView.setTextSize(25);
+            textView.setTextSize(30);
         }
 
     }
@@ -141,7 +153,14 @@ public class GrabarLlamadaActivity extends AppCompatActivity {
         Intent i = new Intent(this, GrabaWhattsapActivity.class);
         i.putExtra("numeroCont",id);
         i.putExtra("NFC2",segundo_paso);
+        finish();
         startActivity(i);
 
+    }
+    public void irGrabarLlamada(String numeroCont){
+        Intent i = new Intent(this,GrabarLlamadaActivity.class);
+        i.putExtra("numeroCont",numeroCont);
+        finish();
+        startActivity(i);
     }
 }

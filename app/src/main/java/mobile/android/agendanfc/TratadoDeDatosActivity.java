@@ -98,17 +98,4 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isAppInstalled(String s) {
-        PackageManager packageManager = getPackageManager();
-        boolean is_installed;
-
-        try {
-            packageManager.getPackageInfo(s, PackageManager.GET_ACTIVITIES);
-            is_installed = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            is_installed = false;
-            e.printStackTrace();
-        }
-        return is_installed;
-    }
 }

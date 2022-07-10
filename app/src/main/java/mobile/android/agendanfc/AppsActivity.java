@@ -54,12 +54,12 @@ public class AppsActivity extends ListActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.app_name));
 
-        builder.setPositiveButton("Know More", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Saver más", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
         });
-        builder.setNegativeButton("No Thanks!", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("No gracias", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
@@ -128,7 +128,7 @@ public class AppsActivity extends ListActivity {
         @Override
         protected void onPreExecute() {
             progress = ProgressDialog.show(AppsActivity.this, null,
-                    "Loading application info...");
+                    "Cargando información de las aplicaciones");
             super.onPreExecute();
         }
 
