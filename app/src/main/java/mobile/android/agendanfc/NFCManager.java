@@ -57,7 +57,7 @@ public class NFCManager {
         NdefMessage mNfcMessage = createUriMessage(whatssapp, "http://api.whatsapp.com/send?phone=");
         return mNfcMessage;
     }
-    public NdefMessage createWhattsapMensaje(String numero, String mensaje){
+    public NdefMessage grabaWhatsappMensaje(String numero, String mensaje){
         String link="api.whatsapp.com/send?phone="+numero+"&text="+mensaje;
         NdefMessage mNfcMessage = createUriMessage(link, "http://");
         return mNfcMessage;

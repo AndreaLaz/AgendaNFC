@@ -107,19 +107,19 @@ public class FormularioActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             int tamanioNumero = 0;
 
-                            String nombreContacto = nombre.getText().toString().trim();
+                            String mensaje = nombre.getText().toString().trim();
                             String numeroTelefono = telefono.getText().toString().trim();
                             String numeroMensajeria = telefono.getText().toString().trim();
                             String codigo = "+"+ccp.getSelectedCountryCode();
 
                             tamanioNumero = contarCaracteres(numeroTelefono, tamanioNumero);
 
-                            if(nombreContacto.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
+                            if(mensaje.isEmpty()&&numeroTelefono.isEmpty()&&numeroMensajeria.isEmpty()){
                                 Toast.makeText(getApplicationContext(),"Error: Ingresa los datos!!!!",Toast.LENGTH_LONG).show();
                             }else if(tamanioNumero<9){
                                 Toast.makeText(getApplicationContext(),"Error: Números muy corto ",Toast.LENGTH_LONG).show();
                             }else
-                                irGrabarNFCOtros(nombreContacto,codigo+numeroTelefono,tipo_form);
+                                irGrabarNFCOtros(mensaje,codigo+numeroTelefono,tipo_form);
 
                         }
                     });

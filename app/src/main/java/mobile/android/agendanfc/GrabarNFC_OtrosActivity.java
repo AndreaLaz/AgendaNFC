@@ -84,7 +84,7 @@ public class GrabarNFC_OtrosActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             builder = new AlertDialog.Builder(GrabarNFC_OtrosActivity.this);
-                            mNfcMessage = mNFCManager.createWhattsapMensaje(dato_1,dato_2);
+                            mNfcMessage = mNFCManager.grabaWhatsappMensaje(dato_1,dato_2);
                             builder.setMessage(Html.fromHtml("Porfavor acerque el movil a la pagina <font color='#0075F1'>MENSAJE WHATSAPP</font> de sus contacto en la agenda"))
                                     .setCancelable(true)
                                     .setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
