@@ -1,14 +1,18 @@
 package mobile.android.agendanfc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 
@@ -72,9 +76,23 @@ public class TratadoDeDatosActivity extends AppCompatActivity {
                                 String type = text.substring(0,1);
                                 String type_phone = "+";
                                 if (type.equals(type_phone)) {
-                                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                    callIntent.setData(Uri.parse("tel:"+text));//change the number
-                                    startActivity(callIntent);
+                                    if (ContextCompat.checkSelfPermission(
+                                            this, Manifest.permission.CALL_PHONE) ==
+                                            PackageManager.PERMISSION_GRANTED) {
+                                        // You can use the API that requires the permission.
+                                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                        callIntent.setData(Uri.parse("tel:"+text));//change the number
+                                        startActivity(callIntent);
+                                    } else {
+                                        // You can directly ask for the permission.
+                                        // The registered ActivityResultCallback gets the result of this request.
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                            requestPermissions(
+                                                    new String[] { Manifest.permission.CALL_PHONE },
+                                                    1);
+                                        }
+                                    }
+
                                 }else {
                                     intent = new Intent(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse("http://"+text));
